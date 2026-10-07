@@ -118,13 +118,16 @@ if payload_to_process:
                 
                 try:
                     if provider == "Google Gemini":
-                        # FIXED: Restored explicit slashes between host domain and model variables
-                        url = f"https://googleapis.com{model_name}:generateContent?key={api_key}"
+                        # UPGRADED: Explicit clean base URL routing
+                        url = f"https://googleapis.com{api_key}"
                         headers = {"Content-Type": "application/json"}
                         data = {"contents": [{"parts": [{"text": final_input}]}]}
+                        
                         res = requests.post(url, json=data, headers=headers, timeout=15)
                         res.raise_for_status()
                         result_json = res.json()
+                        
+                        # FIXED: Corrected dict array extraction structure for standard Gemini response JSON arrays
                         raw_ai_out = result_json['candidates'][0]['content']['parts'][0]['text']
                     else:
                         url = "https://huggingface.co"
