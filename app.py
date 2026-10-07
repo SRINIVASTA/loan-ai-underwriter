@@ -2,6 +2,8 @@ import streamlit as st
 import json
 import os
 import requests
+import pandas as pd
+import plotly.express as px
 
 st.set_page_config(page_title="AI Loan Underwriter", layout="wide")
 st.title("🏦 Automated Real-Time AI Loan Underwriter Dashboard")
@@ -32,6 +34,29 @@ except:
 
 payload_to_process = None
 
+# Helper function to convert messy JSON streams into a clean, readable table layout
+def render_payload_table(payload):
+    flat_data = {
+        "Metric Parameter": [
+            "Application Tracking ID", "Customer Name", "PAN Identification", "Requested Principal", "Loan Tenure",
+            "PAN Registry Status", "Credit Score (CIBIL)", "Existing Monthly EMIs", 
+            "Verified Monthly Net Income", "Current Employer", "Employment Continuity", "Fraud / Device Alert"
+        ],
+        "Ingested Value": [
+            payload.get("application_id"), payload.get("customer_name"), payload.get("pan_number"),
+            f"₹{payload.get('requested_amount', 0):,}", f"{payload.get('loan_term_months')} Months",
+            payload.get("pan_verification", {}).get("status"),
+            payload.get("credit_bureau_stream", {}).get("score"),
+            f"₹{payload.get('credit_bureau_stream', {}).get('total_existing_monthly_emis', 0):,}",
+            f"₹{payload.get('account_aggregator_stream', {}).get('verified_monthly_net_income', 0):,}",
+            payload.get("account_aggregator_stream", {}).get("employer_name"),
+            f"{payload.get('account_aggregator_stream', {}).get('employment_stability_years')} Years",
+            "SUSPICIOUS" if payload.get("fraud_check_stream", {}).get("device_mismatch") or payload.get("fraud_check_stream", {}).get("location_anomaly") else "PASS / SECURE"
+        ]
+    }
+    st.write("### 📥 Stream Pipeline Ingestion Ledger Table")
+    st.table(pd.DataFrame(flat_data))
+
 if "Option A" in pipeline_mode:
     st.subheader("📊 Option A Sandbox Environment Engine & Analytics")
     try:
@@ -40,28 +65,54 @@ if "Option A" in pipeline_mode:
             
         st.write(f"Loaded **{len(mock_db)} historical test profiles** successfully from GitHub repositories.")
         
-        # --- PORTFOLIO VISUAL RISK ANALYTICS ---
+        # --- NEW PORTFOLIO PLOTLY INTERACTIVE RISK ANALYTICS ---
         st.write("### 📈 Sandbox Portfolio Risk Analytics Overview")
-        cibil_scores = [row["credit_bureau_stream"]["score"] for row in mock_db]
-        incomes = [row["account_aggregator_stream"]["verified_monthly_net_income"] for row in mock_db]
-        emis = [row["credit_bureau_stream"]["total_existing_monthly_emis"] for row in mock_db]
-        dti_values = [(e / i) * 100 for e, i in zip(emis, incomes)]
         
+        # Prepare list fields into a clean pandas dataframe for plotting
+        plot_records = []
+        for row in mock_db:
+            inc = row["account_aggregator_stream"]["verified_monthly_net_income"]
+            deb = row["credit_bureau_stream"]["total_existing_monthly_emis"]
+            plot_records.append({
+                "Application ID": row["application_id"],
+                "Customer Name": row["customer_name"],
+                "CIBIL Score": row["credit_bureau_stream"]["score"],
+                "Monthly Income (₹)": inc,
+                "DTI Ratio (%)": (deb / inc) * 100
+            })
+        df_analytics = pd.DataFrame(plot_records)
+        
+        # Render Summary Cards Metrics
         avg_col1, avg_col2, avg_col3 = st.columns(3)
-        avg_col1.metric("Average Portfolio CIBIL Score", f"{sum(cibil_scores)/len(cibil_scores):.0f}")
-        avg_col2.metric("Average Applicant Monthly Income", f"₹{sum(incomes)/len(incomes):,.2f}")
-        avg_col3.metric("Average Portfolio DTI Ratio", f"{sum(dti_values)/len(dti_values):.2f}%")
+        avg_col1.metric("Average Portfolio CIBIL Score", f"{df_analytics['CIBIL Score'].mean():.0f}")
+        avg_col2.metric("Average Applicant Monthly Income", f"₹{df_analytics['Monthly Income (₹)'].mean():,.2f}")
+        avg_col3.metric("Average Portfolio DTI Ratio", f"{df_analytics['DTI Ratio (%)'].mean():.2f}%")
+        
+        # Build Interactive Plotly Scatter Matrix Chart
+        fig = px.scatter(
+            df_analytics, 
+            x="CIBIL Score", 
+            y="DTI Ratio (%)", 
+            hover_data=["Application ID", "Customer Name", "Monthly Income (₹)"],
+            title="Sandbox Portfolio Underwriting Risk Distribution Matrix",
+            color="DTI Ratio (%)",
+            color_continuous_scale="RdYlGn_r"
+        )
+        # Add risk threshold guideline safety rings
+        fig.add_hline(y=43, line_dash="dash", line_color="red", annotation_text="Automatic Pass DTI Max Limit (43%)")
+        fig.add_vline(x=640, line_dash="dash", line_color="orange", annotation_text="Subprime FICO Boundary (640)")
+        fig.update_layout(xaxis_range=[550, 850], yaxis_range=[0, 75])
+        st.plotly_chart(fig, use_container_width=True)
         st.markdown("---")
-        # --------------------------------------
+        # ------------------------------------------------------
 
         app_ids = [row["application_id"] for row in mock_db]
         selected_id = st.selectbox("Select Target Application ID Profile Row:", app_ids)
         
         payload_to_process = next(row for row in mock_db if row["application_id"] == selected_id)
-        st.json(payload_to_process)
+        render_payload_table(payload_to_process)
     except Exception as e:
         st.error(f"Failed to load data/mock_payloads.json: {str(e)}")
-
 else:
     st.subheader("🌐 Option B Live Production API-Driven Stream Pipeline")
     st.info("Bypassing manual document uploads. Fetching verified income from bank networks using secure credentials.")
@@ -83,6 +134,7 @@ else:
             st.warning("📲 Secure Account Aggregator Permission Request Triggered! Official banking SMS OTP dispatched to customer cell line.")
         else:
             st.error("Please provide valid identity metrics inputs.")
+            
     if st.session_state.consent_triggered:
         otp_code = st.text_input("Enter Cryptographic Secure 6-Digit OTP Code Sent to Mobile:", type="password")
         if st.button("Verify OTP & Fetch Real-Time Data Streams"):
@@ -104,8 +156,7 @@ else:
 
     if 'active_production_payload' in st.session_state:
         payload_to_process = st.session_state.active_production_payload
-        st.write("### 📦 Active Production Live JSON Stream Ingested:")
-        st.json(payload_to_process)
+        render_payload_table(payload_to_process)
 
 # 3. Execution Logic
 if payload_to_process:
@@ -118,8 +169,7 @@ if payload_to_process:
                 
                 try:
                     if provider == "Google Gemini":
-                        # FIXED: Deployed correct complete API gateway routing endpoints
-                        url = f"https://googleapis.com{api_key}"
+                        url = f"https://googleapis.com{model_name}:generateContent?key={api_key}"
                         headers = {"Content-Type": "application/json"}
                         data = {"contents": [{"parts": [{"text": final_input}]}]}
                         res = requests.post(url, json=data, headers=headers, timeout=15)
@@ -127,22 +177,19 @@ if payload_to_process:
                         result_json = res.json()
                         raw_ai_out = result_json['candidates'][0]['content']['parts'][0]['text']
                     else:
-                        # FIXED: Deployed actual Hugging Face serverless server address configuration
                         url = f"https://huggingface.co{model_name}"
-                        headers = {
-                            "Authorization": f"Bearer {api_key}", 
-                            "Content-Type": "application/json"
-                        }
+                        headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
                         data = {"inputs": final_input, "parameters": {"max_new_tokens": 500, "return_full_text": False}}
                         res = requests.post(url, json=data, headers=headers, timeout=15)
                         res.raise_for_status()
                         result_json = res.json()
-                        raw_ai_out = result_json[0]['generated_text'] if isinstance(result_json, list) else str(result_json)
+                        raw_ai_out = result_json['generated_text'] if isinstance(result_json, list) else str(result_json)
                     
-                    st.subheader("📤 AI Loan Underwriter Decision Output (Strict JSON)")
                     try:
-                        clean_json = raw_ai_out.replace("```json", "").replace("```", "").strip()
-                        st.json(json.loads(clean_json))
+                        clean_json = json.loads(raw_ai_out.replace("```json", "").replace("```", "").strip())
+                        st.subheader("📤 AI Loan Underwriter Decision Output Ledger")
+                        out_df = pd.DataFrame({"Parameter": list(clean_json.keys()), "Evaluation Data": [str(v) for v in clean_json.values()]})
+                        st.table(out_df)
                     except:
                         st.text(raw_ai_out)
                         
@@ -162,12 +209,12 @@ if payload_to_process:
                         
                         if dti_val > 50 or cibil < 640:
                             decision = "DENY"
-                            rate = None
+                            rate = "N/A"
                             if dti_val > 50: rationale.append(f"Debt-to-Income ratio ({dti_str}) exceeds critical 50% ceiling.")
                             if cibil < 640: rationale.append(f"CIBIL profile score ({cibil}) drops inside high-risk Subprime floor limits.")
                         elif dti_val > 43:
                             decision = "REFER"
-                            rate = None
+                            rate = "N/A"
                             rationale.append(f"DTI ratio is {dti_str}, which exceeds standard 43% automatic clearing threshold. Route to human evaluation.")
                         else:
                             decision = "APPROVE"
@@ -179,17 +226,21 @@ if payload_to_process:
                             decision = "REFER"
                             rationale.append(f"Verifiable work history longevity ({stability} years) sits below the mandatory 2-year constraint.")
                         
-                        offline_json = {
-                            "application_id": payload_to_process["application_id"],
-                            "decision": decision,
-                            "risk_score_assigned": min(100, int(dti_val + (800 - cibil)//10)),
-                            "calculated_dti": dti_str,
-                            "recommended_interest_rate": rate,
-                            "decision_rationale": rationale,
-                            "flagged_anomalies": ["Low Work Stability"] if stability < 2 else []
-                        }
+                        st.subheader("📥 AI Loan Underwriter Decision Output Table")
                         
-                        st.subheader("📥 AI Loan Underwriter Decision Output (Local Fallback Engine JSON)")
-                        st.json(offline_json)
+                        # Apply modern structural color blocks based on local algorithm verdicts
+                        if decision == "APPROVE": st.success("🎉 Underwriting Verdict: AUTOMATIC APPROVAL CLEARED")
+                        elif decision == "REFER": st.warning("⚠️ Underwriting Verdict: MANUAL BANKING REVIEW REQUIRED")
+                        else: st.error("❌ Underwriting Verdict: APPLICATION RISK REJECTED / DENIED")
+                        
+                        decision_table_data = {
+                            "Underwriting Audit Criteria": ["Application ID", "Final Decision Status", "Assigned System Risk Score (1-100)", "Calculated Debt-to-Income (DTI)", "Recommended Fixed Interest Rate"],
+                            "Assessed Operational Metrics": [payload_to_process["application_id"], decision, min(100, int(dti_val + (800 - cibil)//10)), dti_str, rate]
+                        }
+                        st.table(pd.DataFrame(decision_table_data))
+                        
+                        st.write("#### 📝 Institutional Decision Rationale Breakdown:")
+                        for point in rationale:
+                            st.write(f"- {point}")
                     else:
                         st.error(f"Execution failure: {err_msg}")
