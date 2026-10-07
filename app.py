@@ -121,17 +121,25 @@ if payload_to_process:
                         url = f"https://googleapis.com{model_name}:generateContent?key={api_key}"
                         headers = {"Content-Type": "application/json"}
                         data = {"contents": [{"parts": [{"text": final_input}]}]}
-                        res = requests.post(url, json=data, headers=headers, timeout=10)
+                        res = requests.post(url, json=data, headers=headers, timeout=15)
                         result_json = res.json()
-                        raw_ai_out = result_json['candidates']['content']['parts']['text']
+                        raw_ai_out = result_json['candidates'][0]['content']['parts'][0]['text']
                     else:
-                        url = f"https://huggingface.co{model_name}"
-                        headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
-                        data = {"inputs": final_input, "parameters": {"max_new_tokens": 500, "return_full_text": False}}
-                        res = requests.post(url, json=data, headers=headers, timeout=10)
+                        # UPGRADED: Router gateway architecture configuration
+                        url = "https://huggingface.co"
+                        headers = {
+                            "Authorization": f"Bearer {api_key}", 
+                            "Content-Type": "application/json"
+                        }
+                        data = {
+                            "model": model_name,
+                            "messages": [{"role": "user", "content": final_input}],
+                            "max_tokens": 500
+                        }
+                        res = requests.post(url, json=data, headers=headers, timeout=15)
                         res.raise_for_status()
                         result_json = res.json()
-                        raw_ai_out = result_json['generated_text'] if isinstance(result_json, list) else str(result_json)
+                        raw_ai_out = result_json['choices'][0]['message']['content']
                     
                     st.subheader("📤 AI Loan Underwriter Decision Output (Strict JSON)")
                     try:
@@ -142,7 +150,8 @@ if payload_to_process:
                         
                 except Exception as e:
                     err_msg = str(e)
-                    if "Failed to resolve" in err_msg or "NameResolutionError" in err_msg or "Max retries exceeded" in err_msg or "401" in err_msg:
+                    # Local fallback engine operates as an offline safety ring if APIs time out or error out
+                    if "Failed to resolve" in err_msg or "NameResolutionError" in err_msg or "Max retries exceeded" in err_msg or "401" in err_msg or "404" in err_msg:
                         st.warning("⚠️ Local Network Offline Override Triggered: Executing Python Operational Underwriting Risk Engine...")
                         
                         income = payload_to_process["account_aggregator_stream"]["verified_monthly_net_income"]
