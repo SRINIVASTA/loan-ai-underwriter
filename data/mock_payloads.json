@@ -1,0 +1,2802 @@
+[
+  {
+    "application_id": "APP-MOCK-001",
+    "customer_id": "CUST-MOCK-1001",
+    "customer_name": "Sanjay Sharma",
+    "pan_number": "ABCDE5610F",
+    "requested_amount": 500000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Sanjay Sharma",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 810,
+      "active_loans_count": 2,
+      "total_existing_monthly_emis": 36395
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 115338,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 6.8
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-002",
+    "customer_id": "CUST-MOCK-1002",
+    "customer_name": "Vikram Nair",
+    "pan_number": "ABCDE4835F",
+    "requested_amount": 1000000,
+    "loan_term_months": 60,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Vikram Nair",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 580,
+      "active_loans_count": 3,
+      "total_existing_monthly_emis": 123735
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 203407,
+      "employer_name": "Global Infosys",
+      "employment_stability_years": 2.0
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-003",
+    "customer_id": "CUST-MOCK-1003",
+    "customer_name": "Anjali Mehta",
+    "pan_number": "ABCDE3833F",
+    "requested_amount": 1500000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Anjali Mehta",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 680,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 28724
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 189799,
+      "employer_name": "TCS Enterprise",
+      "employment_stability_years": 7.9
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-004",
+    "customer_id": "CUST-MOCK-1004",
+    "customer_name": "Vikram Nair",
+    "pan_number": "ABCDE6191F",
+    "requested_amount": 1500000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Vikram Nair",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 580,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 78086
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 127788,
+      "employer_name": "Global Infosys",
+      "employment_stability_years": 5.6
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-005",
+    "customer_id": "CUST-MOCK-1005",
+    "customer_name": "Neha Nair",
+    "pan_number": "ABCDE6172F",
+    "requested_amount": 1500000,
+    "loan_term_months": 60,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Neha Nair",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 580,
+      "active_loans_count": 1,
+      "total_existing_monthly_emis": 101590
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 182046,
+      "employer_name": "HDFC Corp",
+      "employment_stability_years": 2.7
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-006",
+    "customer_id": "CUST-MOCK-1006",
+    "customer_name": "Neha Rao",
+    "pan_number": "ABCDE9648F",
+    "requested_amount": 1500000,
+    "loan_term_months": 60,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Neha Rao",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 610,
+      "active_loans_count": 1,
+      "total_existing_monthly_emis": 91264
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 179243,
+      "employer_name": "HDFC Corp",
+      "employment_stability_years": 4.4
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-007",
+    "customer_id": "CUST-MOCK-1007",
+    "customer_name": "Rohan Nair",
+    "pan_number": "ABCDE7716F",
+    "requested_amount": 500000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rohan Nair",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 710,
+      "active_loans_count": 3,
+      "total_existing_monthly_emis": 44017
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 241552,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 1.5
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-008",
+    "customer_id": "CUST-MOCK-1008",
+    "customer_name": "Anjali Mehta",
+    "pan_number": "ABCDE1402F",
+    "requested_amount": 1000000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Anjali Mehta",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 650,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 68118
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 199156,
+      "employer_name": "Tech Solutions Pvt Ltd",
+      "employment_stability_years": 6.9
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-009",
+    "customer_id": "CUST-MOCK-1009",
+    "customer_name": "Rohan Sharma",
+    "pan_number": "ABCDE6211F",
+    "requested_amount": 1000000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rohan Sharma",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 790,
+      "active_loans_count": 2,
+      "total_existing_monthly_emis": 14611
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 57544,
+      "employer_name": "HDFC Corp",
+      "employment_stability_years": 7.8
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-010",
+    "customer_id": "CUST-MOCK-1010",
+    "customer_name": "Neha Verma",
+    "pan_number": "ABCDE6931F",
+    "requested_amount": 100000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Neha Verma",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 610,
+      "active_loans_count": 1,
+      "total_existing_monthly_emis": 121790
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 210366,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 6.2
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-011",
+    "customer_id": "CUST-MOCK-1011",
+    "customer_name": "Neha Gupta",
+    "pan_number": "ABCDE5631F",
+    "requested_amount": 1000000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Neha Gupta",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 740,
+      "active_loans_count": 1,
+      "total_existing_monthly_emis": 18791
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 96931,
+      "employer_name": "Tech Solutions Pvt Ltd",
+      "employment_stability_years": 7.9
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-012",
+    "customer_id": "CUST-MOCK-1012",
+    "customer_name": "Sneha Joshi",
+    "pan_number": "ABCDE6216F",
+    "requested_amount": 300000,
+    "loan_term_months": 60,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Sneha Joshi",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 810,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 13811
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 82011,
+      "employer_name": "Global Infosys",
+      "employment_stability_years": 6.4
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-013",
+    "customer_id": "CUST-MOCK-1013",
+    "customer_name": "Deepak Singh",
+    "pan_number": "ABCDE6806F",
+    "requested_amount": 1500000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Deepak Singh",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 610,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 126034
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 229841,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 2.8
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-014",
+    "customer_id": "CUST-MOCK-1014",
+    "customer_name": "Rohan Singh",
+    "pan_number": "ABCDE5075F",
+    "requested_amount": 1000000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rohan Singh",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 790,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 10782
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 31270,
+      "employer_name": "Wipro Digital",
+      "employment_stability_years": 2.9
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-015",
+    "customer_id": "CUST-MOCK-1015",
+    "customer_name": "Sneha Rao",
+    "pan_number": "ABCDE4789F",
+    "requested_amount": 1500000,
+    "loan_term_months": 60,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Sneha Rao",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 580,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 106698
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 226268,
+      "employer_name": "Tech Solutions Pvt Ltd",
+      "employment_stability_years": 6.1
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-016",
+    "customer_id": "CUST-MOCK-1016",
+    "customer_name": "Rahul Joshi",
+    "pan_number": "ABCDE5555F",
+    "requested_amount": 1000000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rahul Joshi",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 740,
+      "active_loans_count": 3,
+      "total_existing_monthly_emis": 6560
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 47290,
+      "employer_name": "Tech Solutions Pvt Ltd",
+      "employment_stability_years": 7.9
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-017",
+    "customer_id": "CUST-MOCK-1017",
+    "customer_name": "Priya Patel",
+    "pan_number": "ABCDE5950F",
+    "requested_amount": 1500000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Priya Patel",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 740,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 23634
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 170711,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 3.7
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-018",
+    "customer_id": "CUST-MOCK-1018",
+    "customer_name": "Deepak Das",
+    "pan_number": "ABCDE9795F",
+    "requested_amount": 1000000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Deepak Das",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 710,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 45913
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 178460,
+      "employer_name": "Wipro Digital",
+      "employment_stability_years": 5.6
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-019",
+    "customer_id": "CUST-MOCK-1019",
+    "customer_name": "Deepak Joshi",
+    "pan_number": "ABCDE2575F",
+    "requested_amount": 1500000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Deepak Joshi",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 740,
+      "active_loans_count": 2,
+      "total_existing_monthly_emis": 16373
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 84056,
+      "employer_name": "Wipro Digital",
+      "employment_stability_years": 3.3
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-020",
+    "customer_id": "CUST-MOCK-1020",
+    "customer_name": "Neha Sharma",
+    "pan_number": "ABCDE1222F",
+    "requested_amount": 1500000,
+    "loan_term_months": 60,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Neha Sharma",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 810,
+      "active_loans_count": 3,
+      "total_existing_monthly_emis": 39370
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 124869,
+      "employer_name": "HDFC Corp",
+      "employment_stability_years": 2.1
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-021",
+    "customer_id": "CUST-MOCK-1021",
+    "customer_name": "Amit Patel",
+    "pan_number": "ABCDE4261F",
+    "requested_amount": 300000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Amit Patel",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 680,
+      "active_loans_count": 1,
+      "total_existing_monthly_emis": 11734
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 49938,
+      "employer_name": "TCS Enterprise",
+      "employment_stability_years": 7.5
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-022",
+    "customer_id": "CUST-MOCK-1022",
+    "customer_name": "Amit Patel",
+    "pan_number": "ABCDE9847F",
+    "requested_amount": 500000,
+    "loan_term_months": 60,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Amit Patel",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 810,
+      "active_loans_count": 2,
+      "total_existing_monthly_emis": 53211
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 170209,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 6.3
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-023",
+    "customer_id": "CUST-MOCK-1023",
+    "customer_name": "Vikram Singh",
+    "pan_number": "ABCDE8877F",
+    "requested_amount": 1000000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Vikram Singh",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 810,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 49520
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 232623,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 7.5
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-024",
+    "customer_id": "CUST-MOCK-1024",
+    "customer_name": "Rohan Singh",
+    "pan_number": "ABCDE3725F",
+    "requested_amount": 300000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rohan Singh",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 810,
+      "active_loans_count": 3,
+      "total_existing_monthly_emis": 7757
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 34274,
+      "employer_name": "Global Infosys",
+      "employment_stability_years": 5.0
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-025",
+    "customer_id": "CUST-MOCK-1025",
+    "customer_name": "Priya Rao",
+    "pan_number": "ABCDE8104F",
+    "requested_amount": 1500000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Priya Rao",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 710,
+      "active_loans_count": 1,
+      "total_existing_monthly_emis": 5123
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 43779,
+      "employer_name": "HDFC Corp",
+      "employment_stability_years": 5.4
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-026",
+    "customer_id": "CUST-MOCK-1026",
+    "customer_name": "Anjali Patel",
+    "pan_number": "ABCDE4648F",
+    "requested_amount": 1500000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Anjali Patel",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 610,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 38171
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 70142,
+      "employer_name": "Wipro Digital",
+      "employment_stability_years": 7.6
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-027",
+    "customer_id": "CUST-MOCK-1027",
+    "customer_name": "Neha Rao",
+    "pan_number": "ABCDE4172F",
+    "requested_amount": 300000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Neha Rao",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 760,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 50128
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 159322,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 3.5
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-028",
+    "customer_id": "CUST-MOCK-1028",
+    "customer_name": "Sneha Joshi",
+    "pan_number": "ABCDE3252F",
+    "requested_amount": 1000000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Sneha Joshi",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 740,
+      "active_loans_count": 2,
+      "total_existing_monthly_emis": 18998
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 152924,
+      "employer_name": "Global Infosys",
+      "employment_stability_years": 4.9
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-029",
+    "customer_id": "CUST-MOCK-1029",
+    "customer_name": "Deepak Sharma",
+    "pan_number": "ABCDE6893F",
+    "requested_amount": 300000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Deepak Sharma",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 610,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 26579
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 48265,
+      "employer_name": "TCS Enterprise",
+      "employment_stability_years": 7.2
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-030",
+    "customer_id": "CUST-MOCK-1030",
+    "customer_name": "Rohan Joshi",
+    "pan_number": "ABCDE1298F",
+    "requested_amount": 500000,
+    "loan_term_months": 60,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rohan Joshi",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 610,
+      "active_loans_count": 1,
+      "total_existing_monthly_emis": 98979
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 175594,
+      "employer_name": "Global Infosys",
+      "employment_stability_years": 0.7
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-031",
+    "customer_id": "CUST-MOCK-1031",
+    "customer_name": "Priya Mehta",
+    "pan_number": "ABCDE3376F",
+    "requested_amount": 500000,
+    "loan_term_months": 60,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Priya Mehta",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 790,
+      "active_loans_count": 3,
+      "total_existing_monthly_emis": 45513
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 132205,
+      "employer_name": "TCS Enterprise",
+      "employment_stability_years": 6.0
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-032",
+    "customer_id": "CUST-MOCK-1032",
+    "customer_name": "Sanjay Patel",
+    "pan_number": "ABCDE5122F",
+    "requested_amount": 500000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Sanjay Patel",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 710,
+      "active_loans_count": 1,
+      "total_existing_monthly_emis": 29187
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 177783,
+      "employer_name": "Tech Solutions Pvt Ltd",
+      "employment_stability_years": 5.6
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-033",
+    "customer_id": "CUST-MOCK-1033",
+    "customer_name": "Anjali Joshi",
+    "pan_number": "ABCDE5777F",
+    "requested_amount": 1500000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Anjali Joshi",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 810,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 66978
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 240219,
+      "employer_name": "TCS Enterprise",
+      "employment_stability_years": 1.6
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-034",
+    "customer_id": "CUST-MOCK-1034",
+    "customer_name": "Vikram Patel",
+    "pan_number": "ABCDE3240F",
+    "requested_amount": 1000000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Vikram Patel",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 710,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 44539
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 144736,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 6.0
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-035",
+    "customer_id": "CUST-MOCK-1035",
+    "customer_name": "Sneha Verma",
+    "pan_number": "ABCDE6821F",
+    "requested_amount": 100000,
+    "loan_term_months": 60,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Sneha Verma",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 790,
+      "active_loans_count": 3,
+      "total_existing_monthly_emis": 10856
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 94805,
+      "employer_name": "Tech Solutions Pvt Ltd",
+      "employment_stability_years": 7.1
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-036",
+    "customer_id": "CUST-MOCK-1036",
+    "customer_name": "Rahul Das",
+    "pan_number": "ABCDE8927F",
+    "requested_amount": 300000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rahul Das",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 760,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 59856
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 203597,
+      "employer_name": "HDFC Corp",
+      "employment_stability_years": 6.2
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-037",
+    "customer_id": "CUST-MOCK-1037",
+    "customer_name": "Rohan Das",
+    "pan_number": "ABCDE8502F",
+    "requested_amount": 1000000,
+    "loan_term_months": 60,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rohan Das",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 680,
+      "active_loans_count": 2,
+      "total_existing_monthly_emis": 48744
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 180910,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 4.4
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-038",
+    "customer_id": "CUST-MOCK-1038",
+    "customer_name": "Vikram Singh",
+    "pan_number": "ABCDE2765F",
+    "requested_amount": 300000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Vikram Singh",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 680,
+      "active_loans_count": 3,
+      "total_existing_monthly_emis": 11929
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 75763,
+      "employer_name": "HDFC Corp",
+      "employment_stability_years": 0.6
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-039",
+    "customer_id": "CUST-MOCK-1039",
+    "customer_name": "Rahul Mehta",
+    "pan_number": "ABCDE5013F",
+    "requested_amount": 500000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rahul Mehta",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 760,
+      "active_loans_count": 1,
+      "total_existing_monthly_emis": 23752
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 234791,
+      "employer_name": "Tech Solutions Pvt Ltd",
+      "employment_stability_years": 5.1
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-040",
+    "customer_id": "CUST-MOCK-1040",
+    "customer_name": "Priya Sharma",
+    "pan_number": "ABCDE3833F",
+    "requested_amount": 500000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Priya Sharma",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 610,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 35604
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 78881,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 2.8
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-041",
+    "customer_id": "CUST-MOCK-1041",
+    "customer_name": "Amit Verma",
+    "pan_number": "ABCDE3877F",
+    "requested_amount": 100000,
+    "loan_term_months": 60,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Amit Verma",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 650,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 22135
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 125721,
+      "employer_name": "Global Infosys",
+      "employment_stability_years": 4.9
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-042",
+    "customer_id": "CUST-MOCK-1042",
+    "customer_name": "Sneha Mehta",
+    "pan_number": "ABCDE9763F",
+    "requested_amount": 300000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Sneha Mehta",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 790,
+      "active_loans_count": 3,
+      "total_existing_monthly_emis": 50539
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 201855,
+      "employer_name": "TCS Enterprise",
+      "employment_stability_years": 6.2
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-043",
+    "customer_id": "CUST-MOCK-1043",
+    "customer_name": "Deepak Joshi",
+    "pan_number": "ABCDE9699F",
+    "requested_amount": 100000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Deepak Joshi",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 740,
+      "active_loans_count": 2,
+      "total_existing_monthly_emis": 20194
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 201876,
+      "employer_name": "HDFC Corp",
+      "employment_stability_years": 3.4
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-044",
+    "customer_id": "CUST-MOCK-1044",
+    "customer_name": "Rohan Patel",
+    "pan_number": "ABCDE8863F",
+    "requested_amount": 500000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rohan Patel",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 580,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 152352
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 244433,
+      "employer_name": "Tech Solutions Pvt Ltd",
+      "employment_stability_years": 2.4
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-045",
+    "customer_id": "CUST-MOCK-1045",
+    "customer_name": "Anjali Sharma",
+    "pan_number": "ABCDE9939F",
+    "requested_amount": 1000000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Anjali Sharma",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 580,
+      "active_loans_count": 1,
+      "total_existing_monthly_emis": 53888
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 107489,
+      "employer_name": "Global Infosys",
+      "employment_stability_years": 2.2
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-046",
+    "customer_id": "CUST-MOCK-1046",
+    "customer_name": "Sneha Mehta",
+    "pan_number": "ABCDE9651F",
+    "requested_amount": 1500000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Sneha Mehta",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 710,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 32037
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 138094,
+      "employer_name": "Tech Solutions Pvt Ltd",
+      "employment_stability_years": 5.0
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-047",
+    "customer_id": "CUST-MOCK-1047",
+    "customer_name": "Amit Singh",
+    "pan_number": "ABCDE9971F",
+    "requested_amount": 1500000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Amit Singh",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 760,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 57084
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 207506,
+      "employer_name": "Global Infosys",
+      "employment_stability_years": 4.5
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-048",
+    "customer_id": "CUST-MOCK-1048",
+    "customer_name": "Rahul Patel",
+    "pan_number": "ABCDE5000F",
+    "requested_amount": 1000000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rahul Patel",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 580,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 88536
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 170348,
+      "employer_name": "TCS Enterprise",
+      "employment_stability_years": 2.3
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-049",
+    "customer_id": "CUST-MOCK-1049",
+    "customer_name": "Amit Patel",
+    "pan_number": "ABCDE5171F",
+    "requested_amount": 1000000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Amit Patel",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 710,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 5517
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 49731,
+      "employer_name": "TCS Enterprise",
+      "employment_stability_years": 0.6
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-050",
+    "customer_id": "CUST-MOCK-1050",
+    "customer_name": "Neha Gupta",
+    "pan_number": "ABCDE2034F",
+    "requested_amount": 100000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Neha Gupta",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 610,
+      "active_loans_count": 2,
+      "total_existing_monthly_emis": 57975
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 105000,
+      "employer_name": "TCS Enterprise",
+      "employment_stability_years": 1.5
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-051",
+    "customer_id": "CUST-MOCK-1051",
+    "customer_name": "Vikram Patel",
+    "pan_number": "ABCDE2051F",
+    "requested_amount": 500000,
+    "loan_term_months": 60,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Vikram Patel",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 710,
+      "active_loans_count": 3,
+      "total_existing_monthly_emis": 41275
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 168633,
+      "employer_name": "Wipro Digital",
+      "employment_stability_years": 7.2
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-052",
+    "customer_id": "CUST-MOCK-1052",
+    "customer_name": "Rohan Mehta",
+    "pan_number": "ABCDE4066F",
+    "requested_amount": 500000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rohan Mehta",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 650,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 12728
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 79164,
+      "employer_name": "TCS Enterprise",
+      "employment_stability_years": 3.8
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-053",
+    "customer_id": "CUST-MOCK-1053",
+    "customer_name": "Vikram Rao",
+    "pan_number": "ABCDE7018F",
+    "requested_amount": 1000000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Vikram Rao",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 650,
+      "active_loans_count": 2,
+      "total_existing_monthly_emis": 3766
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 34421,
+      "employer_name": "Global Infosys",
+      "employment_stability_years": 4.9
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-054",
+    "customer_id": "CUST-MOCK-1054",
+    "customer_name": "Rahul Gupta",
+    "pan_number": "ABCDE5439F",
+    "requested_amount": 500000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rahul Gupta",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 810,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 39921
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 213440,
+      "employer_name": "Wipro Digital",
+      "employment_stability_years": 1.4
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-055",
+    "customer_id": "CUST-MOCK-1055",
+    "customer_name": "Rahul Mehta",
+    "pan_number": "ABCDE3016F",
+    "requested_amount": 1500000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rahul Mehta",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 610,
+      "active_loans_count": 1,
+      "total_existing_monthly_emis": 152548
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 241712,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 1.4
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-056",
+    "customer_id": "CUST-MOCK-1056",
+    "customer_name": "Rahul Joshi",
+    "pan_number": "ABCDE9188F",
+    "requested_amount": 500000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rahul Joshi",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 810,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 60570
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 192509,
+      "employer_name": "TCS Enterprise",
+      "employment_stability_years": 4.2
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-057",
+    "customer_id": "CUST-MOCK-1057",
+    "customer_name": "Sneha Nair",
+    "pan_number": "ABCDE4341F",
+    "requested_amount": 100000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Sneha Nair",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 610,
+      "active_loans_count": 1,
+      "total_existing_monthly_emis": 111055
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 246633,
+      "employer_name": "HDFC Corp",
+      "employment_stability_years": 5.9
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-058",
+    "customer_id": "CUST-MOCK-1058",
+    "customer_name": "Neha Sharma",
+    "pan_number": "ABCDE2409F",
+    "requested_amount": 100000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Neha Sharma",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 790,
+      "active_loans_count": 3,
+      "total_existing_monthly_emis": 25365
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 116155,
+      "employer_name": "HDFC Corp",
+      "employment_stability_years": 3.0
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-059",
+    "customer_id": "CUST-MOCK-1059",
+    "customer_name": "Anjali Patel",
+    "pan_number": "ABCDE9146F",
+    "requested_amount": 100000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Anjali Patel",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 610,
+      "active_loans_count": 3,
+      "total_existing_monthly_emis": 44480
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 92828,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 2.6
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-060",
+    "customer_id": "CUST-MOCK-1060",
+    "customer_name": "Sanjay Rao",
+    "pan_number": "ABCDE8619F",
+    "requested_amount": 100000,
+    "loan_term_months": 60,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Sanjay Rao",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 810,
+      "active_loans_count": 3,
+      "total_existing_monthly_emis": 41395
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 124176,
+      "employer_name": "TCS Enterprise",
+      "employment_stability_years": 2.6
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-061",
+    "customer_id": "CUST-MOCK-1061",
+    "customer_name": "Vikram Mehta",
+    "pan_number": "ABCDE4210F",
+    "requested_amount": 500000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Vikram Mehta",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 760,
+      "active_loans_count": 3,
+      "total_existing_monthly_emis": 25774
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 134442,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 4.2
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-062",
+    "customer_id": "CUST-MOCK-1062",
+    "customer_name": "Rahul Patel",
+    "pan_number": "ABCDE8747F",
+    "requested_amount": 500000,
+    "loan_term_months": 60,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rahul Patel",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 710,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 17233
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 96242,
+      "employer_name": "HDFC Corp",
+      "employment_stability_years": 4.1
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-063",
+    "customer_id": "CUST-MOCK-1063",
+    "customer_name": "Vikram Sharma",
+    "pan_number": "ABCDE1222F",
+    "requested_amount": 100000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Vikram Sharma",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 610,
+      "active_loans_count": 3,
+      "total_existing_monthly_emis": 19682
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 41757,
+      "employer_name": "HDFC Corp",
+      "employment_stability_years": 1.7
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-064",
+    "customer_id": "CUST-MOCK-1064",
+    "customer_name": "Amit Rao",
+    "pan_number": "ABCDE1127F",
+    "requested_amount": 100000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Amit Rao",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 810,
+      "active_loans_count": 2,
+      "total_existing_monthly_emis": 35563
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 104916,
+      "employer_name": "Wipro Digital",
+      "employment_stability_years": 7.5
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-065",
+    "customer_id": "CUST-MOCK-1065",
+    "customer_name": "Amit Nair",
+    "pan_number": "ABCDE2669F",
+    "requested_amount": 100000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Amit Nair",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 810,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 23827
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 82829,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 3.3
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-066",
+    "customer_id": "CUST-MOCK-1066",
+    "customer_name": "Neha Mehta",
+    "pan_number": "ABCDE7119F",
+    "requested_amount": 300000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Neha Mehta",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 810,
+      "active_loans_count": 1,
+      "total_existing_monthly_emis": 30238
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 182713,
+      "employer_name": "Wipro Digital",
+      "employment_stability_years": 5.1
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-067",
+    "customer_id": "CUST-MOCK-1067",
+    "customer_name": "Amit Rao",
+    "pan_number": "ABCDE7665F",
+    "requested_amount": 300000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Amit Rao",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 790,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 13616
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 65429,
+      "employer_name": "HDFC Corp",
+      "employment_stability_years": 5.4
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-068",
+    "customer_id": "CUST-MOCK-1068",
+    "customer_name": "Neha Gupta",
+    "pan_number": "ABCDE9950F",
+    "requested_amount": 1000000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Neha Gupta",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 740,
+      "active_loans_count": 2,
+      "total_existing_monthly_emis": 10181
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 87632,
+      "employer_name": "HDFC Corp",
+      "employment_stability_years": 3.4
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-069",
+    "customer_id": "CUST-MOCK-1069",
+    "customer_name": "Anjali Das",
+    "pan_number": "ABCDE5557F",
+    "requested_amount": 1500000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Anjali Das",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 580,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 61717
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 118728,
+      "employer_name": "Global Infosys",
+      "employment_stability_years": 1.2
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-070",
+    "customer_id": "CUST-MOCK-1070",
+    "customer_name": "Sneha Gupta",
+    "pan_number": "ABCDE5451F",
+    "requested_amount": 1500000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Sneha Gupta",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 650,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 55061
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 161172,
+      "employer_name": "Wipro Digital",
+      "employment_stability_years": 4.6
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-071",
+    "customer_id": "CUST-MOCK-1071",
+    "customer_name": "Rahul Das",
+    "pan_number": "ABCDE6543F",
+    "requested_amount": 1000000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rahul Das",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 790,
+      "active_loans_count": 3,
+      "total_existing_monthly_emis": 36467
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 115942,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 0.6
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-072",
+    "customer_id": "CUST-MOCK-1072",
+    "customer_name": "Vikram Singh",
+    "pan_number": "ABCDE3969F",
+    "requested_amount": 1000000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Vikram Singh",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 610,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 81140
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 144643,
+      "employer_name": "HDFC Corp",
+      "employment_stability_years": 2.4
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-073",
+    "customer_id": "CUST-MOCK-1073",
+    "customer_name": "Vikram Nair",
+    "pan_number": "ABCDE5003F",
+    "requested_amount": 1000000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Vikram Nair",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 740,
+      "active_loans_count": 1,
+      "total_existing_monthly_emis": 40429
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 217837,
+      "employer_name": "Wipro Digital",
+      "employment_stability_years": 3.2
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-074",
+    "customer_id": "CUST-MOCK-1074",
+    "customer_name": "Anjali Gupta",
+    "pan_number": "ABCDE1939F",
+    "requested_amount": 1000000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Anjali Gupta",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 610,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 94583
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 209600,
+      "employer_name": "TCS Enterprise",
+      "employment_stability_years": 4.5
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-075",
+    "customer_id": "CUST-MOCK-1075",
+    "customer_name": "Sanjay Das",
+    "pan_number": "ABCDE6264F",
+    "requested_amount": 1000000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Sanjay Das",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 680,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 14415
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 133930,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 7.4
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-076",
+    "customer_id": "CUST-MOCK-1076",
+    "customer_name": "Sneha Gupta",
+    "pan_number": "ABCDE6885F",
+    "requested_amount": 100000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Sneha Gupta",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 790,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 53061
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 217484,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 7.4
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-077",
+    "customer_id": "CUST-MOCK-1077",
+    "customer_name": "Anjali Patel",
+    "pan_number": "ABCDE7890F",
+    "requested_amount": 1500000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Anjali Patel",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 580,
+      "active_loans_count": 1,
+      "total_existing_monthly_emis": 119110
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 210795,
+      "employer_name": "Tech Solutions Pvt Ltd",
+      "employment_stability_years": 2.5
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-078",
+    "customer_id": "CUST-MOCK-1078",
+    "customer_name": "Amit Joshi",
+    "pan_number": "ABCDE5301F",
+    "requested_amount": 500000,
+    "loan_term_months": 60,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Amit Joshi",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 790,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 31920
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 131460,
+      "employer_name": "TCS Enterprise",
+      "employment_stability_years": 2.9
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-079",
+    "customer_id": "CUST-MOCK-1079",
+    "customer_name": "Rohan Nair",
+    "pan_number": "ABCDE2226F",
+    "requested_amount": 500000,
+    "loan_term_months": 60,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rohan Nair",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 740,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 70482
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 216269,
+      "employer_name": "Wipro Digital",
+      "employment_stability_years": 0.8
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-080",
+    "customer_id": "CUST-MOCK-1080",
+    "customer_name": "Rohan Patel",
+    "pan_number": "ABCDE7791F",
+    "requested_amount": 1000000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rohan Patel",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 740,
+      "active_loans_count": 3,
+      "total_existing_monthly_emis": 12698
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 87296,
+      "employer_name": "Wipro Digital",
+      "employment_stability_years": 3.5
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-081",
+    "customer_id": "CUST-MOCK-1081",
+    "customer_name": "Sanjay Patel",
+    "pan_number": "ABCDE4226F",
+    "requested_amount": 300000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Sanjay Patel",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 810,
+      "active_loans_count": 2,
+      "total_existing_monthly_emis": 31199
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 92232,
+      "employer_name": "Global Infosys",
+      "employment_stability_years": 7.3
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-082",
+    "customer_id": "CUST-MOCK-1082",
+    "customer_name": "Sneha Mehta",
+    "pan_number": "ABCDE2055F",
+    "requested_amount": 1000000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Sneha Mehta",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 760,
+      "active_loans_count": 2,
+      "total_existing_monthly_emis": 22791
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 105250,
+      "employer_name": "TCS Enterprise",
+      "employment_stability_years": 5.2
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-083",
+    "customer_id": "CUST-MOCK-1083",
+    "customer_name": "Rahul Mehta",
+    "pan_number": "ABCDE3954F",
+    "requested_amount": 500000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rahul Mehta",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 810,
+      "active_loans_count": 2,
+      "total_existing_monthly_emis": 34270
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 180357,
+      "employer_name": "HDFC Corp",
+      "employment_stability_years": 3.7
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-084",
+    "customer_id": "CUST-MOCK-1084",
+    "customer_name": "Rahul Nair",
+    "pan_number": "ABCDE7369F",
+    "requested_amount": 100000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rahul Nair",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 610,
+      "active_loans_count": 3,
+      "total_existing_monthly_emis": 41409
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 86276,
+      "employer_name": "HDFC Corp",
+      "employment_stability_years": 6.4
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-085",
+    "customer_id": "CUST-MOCK-1085",
+    "customer_name": "Deepak Sharma",
+    "pan_number": "ABCDE9981F",
+    "requested_amount": 300000,
+    "loan_term_months": 60,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Deepak Sharma",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 810,
+      "active_loans_count": 2,
+      "total_existing_monthly_emis": 6323
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 32164,
+      "employer_name": "Wipro Digital",
+      "employment_stability_years": 0.8
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-086",
+    "customer_id": "CUST-MOCK-1086",
+    "customer_name": "Priya Das",
+    "pan_number": "ABCDE2520F",
+    "requested_amount": 500000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Priya Das",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 650,
+      "active_loans_count": 1,
+      "total_existing_monthly_emis": 17217
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 93819,
+      "employer_name": "HDFC Corp",
+      "employment_stability_years": 0.8
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-087",
+    "customer_id": "CUST-MOCK-1087",
+    "customer_name": "Amit Sharma",
+    "pan_number": "ABCDE9103F",
+    "requested_amount": 100000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Amit Sharma",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 760,
+      "active_loans_count": 2,
+      "total_existing_monthly_emis": 57475
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 168582,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 7.7
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-088",
+    "customer_id": "CUST-MOCK-1088",
+    "customer_name": "Sanjay Singh",
+    "pan_number": "ABCDE6394F",
+    "requested_amount": 1500000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Sanjay Singh",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 580,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 88105
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 141399,
+      "employer_name": "Tech Solutions Pvt Ltd",
+      "employment_stability_years": 2.1
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-089",
+    "customer_id": "CUST-MOCK-1089",
+    "customer_name": "Neha Patel",
+    "pan_number": "ABCDE6244F",
+    "requested_amount": 1000000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Neha Patel",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 760,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 70277
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 243339,
+      "employer_name": "Tech Solutions Pvt Ltd",
+      "employment_stability_years": 5.5
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-090",
+    "customer_id": "CUST-MOCK-1090",
+    "customer_name": "Amit Sharma",
+    "pan_number": "ABCDE6607F",
+    "requested_amount": 100000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Amit Sharma",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 650,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 61668
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 224358,
+      "employer_name": "Global Infosys",
+      "employment_stability_years": 6.4
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-091",
+    "customer_id": "CUST-MOCK-1091",
+    "customer_name": "Deepak Gupta",
+    "pan_number": "ABCDE8031F",
+    "requested_amount": 1000000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Deepak Gupta",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 680,
+      "active_loans_count": 1,
+      "total_existing_monthly_emis": 9628
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 48285,
+      "employer_name": "Wipro Digital",
+      "employment_stability_years": 3.4
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-092",
+    "customer_id": "CUST-MOCK-1092",
+    "customer_name": "Vikram Singh",
+    "pan_number": "ABCDE5777F",
+    "requested_amount": 300000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Vikram Singh",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 760,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 9558
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 48558,
+      "employer_name": "Wipro Digital",
+      "employment_stability_years": 5.9
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-093",
+    "customer_id": "CUST-MOCK-1093",
+    "customer_name": "Rohan Das",
+    "pan_number": "ABCDE6283F",
+    "requested_amount": 1000000,
+    "loan_term_months": 60,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rohan Das",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 710,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 28477
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 122267,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 1.5
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-094",
+    "customer_id": "CUST-MOCK-1094",
+    "customer_name": "Rohan Rao",
+    "pan_number": "ABCDE3461F",
+    "requested_amount": 300000,
+    "loan_term_months": 60,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rohan Rao",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 740,
+      "active_loans_count": 1,
+      "total_existing_monthly_emis": 8591
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 33082,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 5.4
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-095",
+    "customer_id": "CUST-MOCK-1095",
+    "customer_name": "Rahul Joshi",
+    "pan_number": "ABCDE2108F",
+    "requested_amount": 300000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rahul Joshi",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 790,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 53156
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 157685,
+      "employer_name": "Tech Solutions Pvt Ltd",
+      "employment_stability_years": 5.5
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-096",
+    "customer_id": "CUST-MOCK-1096",
+    "customer_name": "Vikram Das",
+    "pan_number": "ABCDE1407F",
+    "requested_amount": 500000,
+    "loan_term_months": 36,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Vikram Das",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 740,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 11999
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 119362,
+      "employer_name": "Global Infosys",
+      "employment_stability_years": 3.4
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-097",
+    "customer_id": "CUST-MOCK-1097",
+    "customer_name": "Rohan Das",
+    "pan_number": "ABCDE7964F",
+    "requested_amount": 1500000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Rohan Das",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 680,
+      "active_loans_count": 3,
+      "total_existing_monthly_emis": 55448
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 224738,
+      "employer_name": "HDFC Corp",
+      "employment_stability_years": 0.6
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-098",
+    "customer_id": "CUST-MOCK-1098",
+    "customer_name": "Priya Joshi",
+    "pan_number": "ABCDE2687F",
+    "requested_amount": 500000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Priya Joshi",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 760,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 16133
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 119217,
+      "employer_name": "TCS Enterprise",
+      "employment_stability_years": 4.7
+    },
+    "fraud_check_stream": {
+      "device_mismatch": true,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-099",
+    "customer_id": "CUST-MOCK-1099",
+    "customer_name": "Priya Singh",
+    "pan_number": "ABCDE4797F",
+    "requested_amount": 100000,
+    "loan_term_months": 12,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Priya Singh",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 650,
+      "active_loans_count": 0,
+      "total_existing_monthly_emis": 63347
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 200628,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 4.2
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  },
+  {
+    "application_id": "APP-MOCK-100",
+    "customer_id": "CUST-MOCK-1100",
+    "customer_name": "Deepak Verma",
+    "pan_number": "ABCDE6844F",
+    "requested_amount": 500000,
+    "loan_term_months": 24,
+    "pan_verification": {
+      "status": "VALID",
+      "holder_name": "Deepak Verma",
+      "pan_type": "INDIVIDUAL"
+    },
+    "credit_bureau_stream": {
+      "score_provider": "CIBIL",
+      "score": 680,
+      "active_loans_count": 4,
+      "total_existing_monthly_emis": 29275
+    },
+    "account_aggregator_stream": {
+      "verified_monthly_net_income": 223292,
+      "employer_name": "Reliance Retail",
+      "employment_stability_years": 4.8
+    },
+    "fraud_check_stream": {
+      "device_mismatch": false,
+      "location_anomaly": false
+    }
+  }
+]
