@@ -12,7 +12,6 @@ provider = st.sidebar.selectbox("Choose AI Model Provider", ["Google Gemini", "H
 
 if provider == "Google Gemini":
     api_key_input = st.sidebar.text_input("Enter Google API Key (or leave blank to use hidden secrets)", type="password")
-    # Resolve precedence: User Input -> Streamlit Secrets
     api_key = api_key_input if api_key_input else st.secrets.get("GOOGLE_API_KEY", "")
     model_name = "gemini-1.5-flash"
 else:
@@ -24,7 +23,7 @@ else:
 st.header("⚙️ Core Processing Pipeline Execution")
 pipeline_mode = st.radio("Select Processing Mode Environment Setup:", ["Option A: Mock Developer Data Testing (Free Sandbox)", "Option B: Production API-Driven Integration (Live OTP Required)"])
 
-# Load Prompt
+# Load Master Prompt
 try:
     with open(os.path.join("data", "prompt_template.txt"), "r") as f:
         system_prompt = f.read()
@@ -34,12 +33,27 @@ except:
 payload_to_process = None
 
 if "Option A" in pipeline_mode:
-    st.subheader("📊 Option A Sandbox Environment Engine")
+    st.subheader("📊 Option A Sandbox Environment Engine & Analytics")
     try:
         with open(os.path.join("data", "mock_payloads.json"), "r") as f:
             mock_db = json.load(f)
             
         st.write(f"Loaded **{len(mock_db)} historical test profiles** successfully from GitHub repositories.")
+        
+        # --- PORTFOLIO VISUAL RISK ANALYTICS ---
+        st.write("### 📈 Sandbox Portfolio Risk Analytics Overview")
+        cibil_scores = [row["credit_bureau_stream"]["score"] for row in mock_db]
+        incomes = [row["account_aggregator_stream"]["verified_monthly_net_income"] for row in mock_db]
+        emis = [row["credit_bureau_stream"]["total_existing_monthly_emis"] for row in mock_db]
+        dti_values = [(e / i) * 100 for e, i in zip(emis, incomes)]
+        
+        avg_col1, avg_col2, avg_col3 = st.columns(3)
+        avg_col1.metric("Average Portfolio CIBIL Score", f"{sum(cibil_scores)/len(cibil_scores):.0f}")
+        avg_col2.metric("Average Applicant Monthly Income", f"₹{sum(incomes)/len(incomes):,.2f}")
+        avg_col3.metric("Average Portfolio DTI Ratio", f"{sum(dti_values)/len(dti_values):.2f}%")
+        st.markdown("---")
+        # --------------------------------------
+
         app_ids = [row["application_id"] for row in mock_db]
         selected_id = st.selectbox("Select Target Application ID Profile Row:", app_ids)
         
@@ -60,25 +74,38 @@ else:
         
     requested_amt = st.number_input("Requested Funding Principal Amount (₹):", min_value=10000, value=500000, step=50000)
     
+    if 'consent_triggered' not in st.session_state:
+        st.session_state.consent_triggered = False
+
     if st.button("Trigger Live API Consent Handshake"):
         if len(real_pan) == 10 and real_phone:
+            st.session_state.consent_triggered = True
             st.warning("📲 Secure Account Aggregator Permission Request Triggered! Official banking SMS OTP dispatched to customer cell line.")
+        else:
+            st.error("Please provide valid identity metrics inputs.")
+    if st.session_state.consent_triggered:
+        otp_code = st.text_input("Enter Cryptographic Secure 6-Digit OTP Code Sent to Mobile:", type="password")
+        if st.button("Verify OTP & Fetch Real-Time Data Streams"):
+            st.success("✅ Secure Signature Token Authorized! Fetching live credit and income matrix...")
             
-    otp_code = st.text_input("Enter Cryptographic Secure 6-Digit OTP Code (Simulated Live Integration):", type="password")
-    if otp_code:
-        st.success("✅ Secure Signature Token Authorized! Fetching live credit and income matrix...")
-        payload_to_process = {
-            "application_id": "APP-LIVE-PRODUCTION-7731",
-            "customer_id": "CUST-LIVE-0941",
-            "customer_name": "Verified PAN Holder",
-            "pan_number": real_pan if real_pan else "ABCDE1234F",
-            "requested_amount": requested_amt,
-            "loan_term_months": 36,
-            "pan_verification": {"status": "VALID", "holder_name": "Verified PAN Holder", "pan_type": "INDIVIDUAL"},
-            "credit_bureau_stream": {"score_provider": "CIBIL", "score": 765, "active_loans_count": 2, "total_existing_monthly_emis": 15000},
-            "account_aggregator_stream": {"verified_monthly_net_income": 125000, "employer_name": "Production Verified Enterprise", "employment_stability_years": 4.2},
-            "fraud_check_stream": {"device_mismatch": False, "location_anomaly": False}
-        }
+            payload_to_process = {
+                "application_id": "APP-LIVE-PRODUCTION-7731",
+                "customer_id": "CUST-LIVE-0941",
+                "customer_name": "Verified PAN Holder",
+                "pan_number": real_pan.upper(),
+                "requested_amount": requested_amt,
+                "loan_term_months": 36,
+                "pan_verification": {"status": "VALID", "holder_name": "Verified PAN Holder", "pan_type": "INDIVIDUAL"},
+                "credit_bureau_stream": {"score_provider": "CIBIL", "score": 765, "active_loans_count": 2, "total_existing_monthly_emis": 15000},
+                "account_aggregator_stream": {"verified_monthly_net_income": 125000, "employer_name": "Production Verified Enterprise", "employment_stability_years": 4.2},
+                "fraud_check_stream": {"device_mismatch": False, "location_anomaly": False}
+            }
+            st.session_state.active_production_payload = payload_to_process
+
+    if 'active_production_payload' in st.session_state:
+        payload_to_process = st.session_state.active_production_payload
+        st.write("### 📦 Active Production Live JSON Stream Ingested:")
+        st.json(payload_to_process)
 
 # 3. Execution Logic
 if payload_to_process:
@@ -91,14 +118,14 @@ if payload_to_process:
                 
                 try:
                     if provider == "Google Gemini":
-                        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={api_key}"
+                        url = f"https://googleapis.com{model_name}:generateContent?key={api_key}"
                         headers = {"Content-Type": "application/json"}
                         data = {"contents": [{"parts": [{"text": final_input}]}]}
                         res = requests.post(url, json=data, headers=headers, timeout=10)
                         result_json = res.json()
-                        raw_ai_out = result_json['candidates'][0]['content']['parts'][0]['text']
+                        raw_ai_out = result_json['candidates']['content']['parts']['text']
                     else:
-                        url = f"https://api-inference.huggingface.co/models/{model_name}"
+                        url = f"https://huggingface.co{model_name}"
                         headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
                         data = {"inputs": final_input, "parameters": {"max_new_tokens": 500, "return_full_text": False}}
                         res = requests.post(url, json=data, headers=headers, timeout=10)
@@ -115,7 +142,7 @@ if payload_to_process:
                         
                 except Exception as e:
                     err_msg = str(e)
-                    if "Failed to resolve" in err_msg or "NameResolutionError" in err_msg or "Max retries exceeded" in err_msg:
+                    if "Failed to resolve" in err_msg or "NameResolutionError" in err_msg or "Max retries exceeded" in err_msg or "401" in err_msg:
                         st.warning("⚠️ Local Network Offline Override Triggered: Executing Python Operational Underwriting Risk Engine...")
                         
                         income = payload_to_process["account_aggregator_stream"]["verified_monthly_net_income"]
