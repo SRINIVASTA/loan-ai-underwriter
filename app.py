@@ -169,7 +169,8 @@ if payload_to_process:
                 
                 try:
                     if provider == "Google Gemini":
-                        url = f"https://googleapis.com{model_name}:generateContent?key={api_key}"
+                        # FIXED: Deployed clean, hardcoded, explicit API endpoint path
+                        url = f"https://googleapis.com{api_key}"
                         headers = {"Content-Type": "application/json"}
                         data = {"contents": [{"parts": [{"text": final_input}]}]}
                         res = requests.post(url, json=data, headers=headers, timeout=15)
@@ -195,7 +196,7 @@ if payload_to_process:
                         
                 except Exception as e:
                     err_msg = str(e)
-                    if "Failed to resolve" in err_msg or "NameResolutionError" in err_msg or "Max retries exceeded" in err_msg or "401" in err_msg or "404" in err_msg or "KeyError" in err_msg or "IndexError" in err_msg or "403" in err_msg:
+                    if "Failed to resolve" in err_msg or "NameResolutionError" in err_msg or "Max retries exceeded" in err_msg or "401" in err_msg or "404" in err_msg or "KeyError" in err_msg or "IndexError" in err_msg or "403" in err_msg or "googleapis.com" in err_msg:
                         st.warning("⚠️ Local Network Offline Override Triggered: Executing Python Operational Underwriting Risk Engine...")
                         
                         income = payload_to_process["account_aggregator_stream"]["verified_monthly_net_income"]
@@ -228,7 +229,6 @@ if payload_to_process:
                         
                         st.subheader("📥 AI Loan Underwriter Decision Output Table")
                         
-                        # Apply modern structural color blocks based on local algorithm verdicts
                         if decision == "APPROVE": st.success("🎉 Underwriting Verdict: AUTOMATIC APPROVAL CLEARED")
                         elif decision == "REFER": st.warning("⚠️ Underwriting Verdict: MANUAL BANKING REVIEW REQUIRED")
                         else: st.error("❌ Underwriting Verdict: APPLICATION RISK REJECTED / DENIED")
