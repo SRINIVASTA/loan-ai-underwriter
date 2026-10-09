@@ -223,7 +223,7 @@ if payload_to_process:
                 decision = "DENY"
                 rate = "N/A"
                 if dti_val > 50: rationale.append(f"Debt-to-Income ratio ({dti_str}) exceeds critical 50% ceiling.")
-                if cibil  43:
+                elif dti_val > 43:
                 decision = "REFER"
                 rate = "N/A"
                 rationale.append(f"DTI ratio is {dti_str}, which exceeds standard 43% automatic clearing threshold. Route to human evaluation.")
