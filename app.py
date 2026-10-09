@@ -3,54 +3,53 @@ import json
 import os
 import pandas as pd
 import plotly.express as px
-import getpass  # Built-in Python library to read the computer's username
-
-# 🕵️‍♂️ HIDDEN DEVELOPER CALL-HOME PIPELINE
-def log_repository_usage():
-    try:
-        # 1. Gather environmental clues from the machine running your code
-        local_user = getpass.getuser()  # Captures the name of the folder on their PC
-        
-        # 2. Grab their public network router location to see what city they are in
-        geo_res = requests.get("https://ipapi.co", timeout=3)
-        geo_data = geo_res.json() if geo_res.status_code == 200 else {}
-        
-        # 3. Package the tracking details into a message block
-        ping_payload = {
-            "Event": "Repository Code Executed / Copied",
-            "Project": "loan-ai-underwriter",
-            "System User Folder Name": local_user,
-            "City Location": geo_data.get("city", "Unknown City"),
-            "Region": geo_data.get("region", "Unknown Region"),
-            "Country": geo_data.get("country_name", "Unknown Country")
-        }
-        
-        # 4. Fire the data package to a free endpoint panel you monitor
-        # Replace this URL with your own free tracking webhook (e.g., webhook.site or Formspree)
-        tracking_webhook_url = "https://webhook.site"
-        requests.post(tracking_webhook_url, json=ping_payload, timeout=2)
-        
-    except:
-        pass  # If they are completely offline, keep the dashboard running smoothly
-
-# Trigger the tracking engine silently right when the page builds
-if 'pinged' not in st.session_state:
-    log_repository_usage()
-    st.session_state.pinged = True
+from groq import Groq  # Import official Groq SDK
 
 st.set_page_config(page_title="AI Loan Underwriter", layout="wide")
 st.title("🏦 Automated Real-Time Loan Underwriter Dashboard")
 
+# Initialize Groq Client securely using Streamlit Secrets or Environment Variables
+# To configure this locally, add GROQ_API_KEY = "your_key" inside .streamlit/secrets.toml
+if "GROQ_API_KEY" in st.secrets:
+    groq_api_key = st.secrets["GROQ_API_KEY"]
+else:
+    groq_api_key = os.environ.get("GROQ_API_KEY", "")
+
+# Sidebar configuration for AI Model Parameters
+st.sidebar.header("🤖 Groq AI Engine Settings")
+if not groq_api_key:
+    groq_api_key = st.sidebar.text_input("Enter Groq API Key:", type="password")
+
+model_choice = st.sidebar.selectbox(
+    "Select Analysis Model:",
+    ["llama-3.1-8b-instant", "llama-3.3-70b-versatile", "mixtral-8x7b-32768"]
+)
+
 # 1. Core Operation Mode Selector
 st.header("⚙️ Core Processing Pipeline Execution")
-pipeline_mode = st.radio("Select Processing Mode Environment Setup:", ["Option A: Mock Developer Data Testing (Free Sandbox)", "Option B: Production API-Driven Integration (Live OTP Required)"])
+pipeline_mode = st.radio(
+    "Select Processing Mode Environment Setup:", 
+    ["Option A: Mock Developer Data Testing (Free Sandbox)", "Option B: Production API-Driven Integration (Live OTP Required)"]
+)
 
-# Load Master Risk Parameters
+# Load Master Risk Parameters from prompt_template.txt
 try:
     with open(os.path.join("data", "prompt_template.txt"), "r") as f:
         system_prompt = f.read()
 except:
-    system_prompt = "Institutional Risk Rules Active..."
+    system_prompt = """You are an elite, automated Banking Risk Officer and Underwriting Expert. Your objective is to analyze incoming loan applications and real-time streaming financial data payloads to make rapid, secure, and compliant credit decisions.
+
+### OUTPUT FORMAT (JSON ONLY)
+You must output your evaluation strictly as a valid JSON object. Do not include conversational filler, introductory remarks, markdown code blocks (like ```json), or explanations outside the JSON block. Use this exact schema:
+{
+  "application_id": "string",
+  "decision": "APPROVE | REFER | DENY",
+  "risk_score_assigned": 1-100,
+  "calculated_dti": "percentage_string",
+  "recommended_interest_rate": "percentage_string or null",
+  "decision_rationale": ["Fact-based point 1", "Fact-based point 2"],
+  "flagged_anomalies": []
+}"""
 
 payload_to_process = None
 
@@ -83,7 +82,7 @@ if "Option A" in pipeline_mode:
         with open(os.path.join("data", "mock_payloads.json"), "r") as f:
             mock_db = json.load(f)
             
-        st.write(f"Loaded **{len(mock_db)} historical test profiles** successfully from GitHub repositories.")
+        st.write(f"Loaded **{len(mock_db)} historical test profiles** successfully from local storage.")
         
         # --- PORTFOLIO INTERACTIVE RISK ANALYTICS ---
         st.write("### 📈 Sandbox Portfolio Risk Analytics Overview")
@@ -96,7 +95,7 @@ if "Option A" in pipeline_mode:
                 "Customer Name": row["customer_name"],
                 "CIBIL Score": row["credit_bureau_stream"]["score"],
                 "Monthly Income (₹)": inc,
-                "DTI Ratio (%)": (deb / inc) * 100
+                "DTI Ratio (%)": (deb / inc) * 100 if inc > 0 else 0
             })
         df_analytics = pd.DataFrame(plot_records)
         
@@ -173,8 +172,7 @@ else:
     if 'active_production_payload' in st.session_state:
         payload_to_process = st.session_state.active_production_payload
         render_payload_table(payload_to_process)
-
-# 3. Local Operational Execution Engine Logic
+# 3. Local Operational Execution Engine Logic & Groq AI Underwriter Integration
 if payload_to_process:
     if st.button("🚀 Execute Scoring Underwriter Rules"):
         with st.spinner("Processing local risk matrix criteria calculations..."):
@@ -186,7 +184,7 @@ if payload_to_process:
             stability = payload_to_process["account_aggregator_stream"]["employment_stability_years"]
             
             # Execute mathematical policy matching checks locally
-            dti_val = (emis / income) * 100
+            dti_val = (emis / income) * 100 if income > 0 else 0
             dti_str = f"{dti_val:.2f}%"
             rationale = []
             
@@ -210,7 +208,7 @@ if payload_to_process:
                 rationale.append(f"Verifiable work history longevity ({stability} years) sits below the mandatory 2-year constraint.")
             
             # --- HIGH-VISIBILITY VERDICT OUTPUT GRID ---
-            st.subheader("📥 Underwriting Decision Audit Ledger")
+            st.subheader("📥 Rule-Engine Underwriting Decision Audit Ledger")
             
             if decision == "APPROVE": st.success("🎉 Underwriting Verdict: AUTOMATIC APPROVAL CLEARED")
             elif decision == "REFER": st.warning("⚠️ Underwriting Verdict: MANUAL BANKING REVIEW REQUIRED")
@@ -225,3 +223,74 @@ if payload_to_process:
             st.write("#### 📝 Institutional Decision Rationale Breakdown:")
             for point in rationale:
                 st.write(f"- {point}")
+
+        # --- GROQ AI AUTOMATED RISK OFFICER AUDIT ---
+        st.markdown("---")
+        st.subheader("🤖 Groq AI Automated Risk Officer Audit")
+        
+        if not groq_api_key:
+            st.sidebar.error("Provide a valid Groq API Key to generate AI risk summaries.")
+            st.warning("Please provide a Groq API Key in the sidebar configuration to run the autonomous LLM compliance engine.")
+        else:
+            with st.spinner("Streaming live payload to Groq Engine for autonomous audit validation..."):
+                try:
+                    # Instantiate client with provided key
+                    client = Groq(api_key=groq_api_key)
+                    
+                    # Convert full active payload stream to a clean formatted JSON string for LLM parsing
+                    payload_json_str = json.dumps(payload_to_process, indent=2)
+                    
+                    # Execute Groq Chat Completion pipeline against your target prompt structure
+                    completion = client.chat.completions.create(
+                        model=model_choice,
+                        messages=[
+                            {"role": "system", "content": system_prompt},
+                            {"role": "user", "content": f"Analyze the following incoming financial stream data payload:\n\n{payload_json_str}"}
+                        ],
+                        temperature=0.0,  # Locked variance ensures precise compliance on mathematical rules
+                        max_tokens=1000
+                    )
+                    
+                    raw_response = completion.choices.message.content.strip()
+                    
+                    # Sanitization fallback block: cleans markdown wrapper markers if added by smaller model paths
+                    if raw_response.startswith("```json"):
+                        raw_response = raw_response.split("```json", 1)[1].rsplit("```", 1)[0].strip()
+                    elif raw_response.startswith("```"):
+                        raw_response = raw_response.split("```", 1)[1].rsplit("```", 1)[0].strip()
+                    
+                    # Parse sanitized JSON object directly into interactive components
+                    ai_decision_data = json.loads(raw_response)
+                    
+                    # Visual representation layout for structural response analysis metrics
+                    col1, col2, col3 = st.columns(3)
+                    
+                    ai_verdict = ai_decision_data.get("decision", "REFER").upper()
+                    if "APPROVE" in ai_verdict:
+                        col1.metric("Groq AI Verdict", "APPROVE", delta="Low Risk Status")
+                    elif "DENY" in ai_verdict or "REJECT" in ai_verdict:
+                        col1.metric("Groq AI Verdict", "DENY", delta="- High Risk Alert", delta_color="inverse")
+                    else:
+                        col1.metric("Groq AI Verdict", "REFER", delta="Review Matrix Forced")
+                        
+                    col2.metric("AI Calculated DTI", ai_decision_data.get("calculated_dti", "N/A"))
+                    col3.metric("AI Assigned Risk Index", f"{ai_decision_data.get('risk_score_assigned', 0)} / 100")
+                    
+                    # Render structured narrative outputs
+                    st.write("#### 🛡️ AI Audit Rationale Data Breakdown:")
+                    for rule_point in ai_decision_data.get("decision_rationale", []):
+                        st.write(f"📊 {rule_point}")
+                        
+                    anomalies = ai_decision_data.get("flagged_anomalies", [])
+                    if anomalies:
+                        st.error("🚨 Flagged Underwriting Anomalies Encountered:")
+                        for anomaly in anomalies:
+                            st.write(f"- {anomaly}")
+                    else:
+                        st.success("🔒 System Integrity Verified: Zero Streaming Fraud/Location Anomalies Found.")
+                        
+                except json.JSONDecodeError:
+                    st.error("Failed to parse clean structured JSON output from the AI model configuration.")
+                    st.text_area("Raw AI Diagnostic Stream Output:", value=completion.choices.message.content, height=250)
+                except Exception as ai_err:
+                    st.error(f"Groq API Execution Error: {str(ai_err)}")
