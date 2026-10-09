@@ -477,4 +477,3 @@ GENERATED SECURELY VIA AUTOMATED UNDERWRITER ENGINE
                     st.text_area("Raw AI Diagnostic Stream Output:", value=raw_response, height=250)
                 except Exception as ai_err:
                     st.error(f"Groq API Execution Error: {str(ai_err)}")
-"""
