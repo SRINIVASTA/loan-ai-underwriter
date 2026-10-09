@@ -1,38 +1,44 @@
 import streamlit as st
 import json
 import os
+import io  # Standard library for handling internal binary data buffers
 import pandas as pd
 import plotly.express as px
-from groq import Groq  # Import official Groq SDK
+from groq import Groq  # Official Groq Python SDK
+
+# Local ReportLab layout libraries for standalone server PDF generation
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib import colors
 
 st.set_page_config(page_title="AI Loan Underwriter", layout="wide")
 st.title("🏦 Automated Real-Time Loan Underwriter Dashboard")
 
-# Initialize Groq Client securely using Streamlit Secrets or Environment Variables
+# Initialize Groq Client securely via Streamlit Secrets or local environment keys
 if "GROQ_API_KEY" in st.secrets:
     groq_api_key = st.secrets["GROQ_API_KEY"]
 else:
     groq_api_key = os.environ.get("GROQ_API_KEY", "")
 
-# Sidebar configuration for AI Model Parameters
+# Sidebar engine control parameters
 st.sidebar.header("🤖 Groq AI Engine Settings")
 if not groq_api_key:
     groq_api_key = st.sidebar.text_input("Enter Groq API Key:", type="password")
 
-# Active 2026-compliant models
 model_choice = st.sidebar.selectbox(
     "Select Analysis Model:",
     ["openai/gpt-oss-20b", "openai/gpt-oss-120b", "llama-3.3-70b-versatile", "qwen/qwen3.8-27b"]
 )
 
-# 1. Core Operation Mode Selector
+# Core Operation Pipeline Select Selector Switch Node
 st.header("⚙️ Core Processing Pipeline Execution")
 pipeline_mode = st.radio(
     "Select Processing Mode Environment Setup:", 
     ["Option A: Mock Developer Data Testing (Free Sandbox)", "Option B: Production API-Driven Integration (Live OTP Required)"]
 )
 
-# Load Master Risk Parameters from prompt_template.txt
+# Load Master Institutional System Risk prompt blueprints
 try:
     with open(os.path.join("data", "prompt_template.txt"), "r") as f:
         system_prompt = f.read()
@@ -44,7 +50,7 @@ You must output your evaluation strictly as a valid JSON object. Do not include 
 {
   "application_id": "string",
   "decision": "APPROVE | REFER | DENY",
-  "risk_score_assigned": 1-100,
+  "risk_score_assigned": 1-100,  # CRITICAL: 1 is lowest default risk, 100 is maximum default risk.
   "calculated_dti": "percentage_string",
   "recommended_interest_rate": "percentage_string or null",
   "decision_rationale": ["Fact-based point 1", "Fact-based point 2"],
@@ -53,7 +59,7 @@ You must output your evaluation strictly as a valid JSON object. Do not include 
 
 payload_to_process = None
 
-# Helper function to convert messy JSON streams into a clean, readable data ledger table
+# Helper function to convert raw nested telemetry maps into structured data grid tables
 def render_payload_table(payload):
     flat_data = {
         "Metric Parameter": [
@@ -238,20 +244,21 @@ if payload_to_process:
                     client = Groq(api_key=groq_api_key)
                     payload_json_str = json.dumps(payload_to_process, indent=2)
                     
-                    # Execute Groq Chat Completion pipeline
+                    # Execute Groq Chat Completion pipeline against target models
                     completion = client.chat.completions.create(
                         model=model_choice,
                         messages=[
                             {"role": "system", "content": system_prompt},
                             {"role": "user", "content": f"Analyze the following incoming financial stream data payload:\n\n{payload_json_str}"}
                         ],
-                        temperature=0.0,
+                        temperature=0.0,  # Zero configuration locks inference paths for financial accuracy
                         max_tokens=1000
                     )
                     
+                    # Fixed SDK call pattern: maps into data buffers securely
                     raw_response = completion.choices[0].message.content.strip()
                     
-                    # Isolation clean logic to capture pure dictionary outputs
+                    # Extract dictionary blocks cleanly between boundaries
                     if "{" in raw_response and "}" in raw_response:
                         start_idx = raw_response.find("{")
                         end_idx = raw_response.rfind("}") + 1
@@ -273,7 +280,7 @@ if payload_to_process:
                         
                     col2.metric("AI Calculated DTI", ai_decision_data.get("calculated_dti", "N/A"))
                     
-                    # Force strict alignment: uses the local calculation to calibrate risk index scale consistency
+                    # Force alignment across engine calculation layers
                     calibrated_ai_score = ai_decision_data.get('risk_score_assigned', calculated_risk_score)
                     if calibrated_ai_score > 50 and "APPROVE" in ai_verdict:
                         calibrated_ai_score = calculated_risk_score
@@ -292,15 +299,16 @@ if payload_to_process:
                     else:
                         st.success("🔒 System Integrity Verified: Zero Streaming Fraud/Location Anomalies Found.")
                     
-                    # --- INTERACTIVE AUDIT EXPORTER WORKFLOW ---
+                    # --- INTERACTIVE DUAL COMPLIANCE EXPORTER LAYOUT ---
                     st.markdown("---")
-                    st.subheader("📥 Export Underwriting Audit Certificate Log")
+                    st.subheader("📥 Export Underwriting Compliance Certificates")
                     
-                    # Pre-compile lines cleanly outside the text string context to bypass syntax exceptions
+                    # Pre-compile plaintext tracking lists outside f-string bounds to prevent SyntaxErrors
                     rationale_lines = "\n".join([f" - {p}" for p in rationale])
                     ai_rationale_lines = "\n".join([f" - {p}" for p in ai_decision_data.get("decision_rationale", [])])
                     anomaly_str = ", ".join(anomalies) if anomalies else "NONE"
 
+                    # 1. GENERATE THE INSTITUTIONAL PLAIN TEXT COMPLIANCE FILE (.TXT)
                     report_text = f"""==================================================
 INSTITUTIONAL UNDERWRITING COMPLIANCE CERTIFICATE
 ==================================================
@@ -332,13 +340,106 @@ GENERATED SECURELY VIA AUTOMATED UNDERWRITER ENGINE
 ==================================================
 """
                     
-                    # Streamlit Native Data Binary Download Node
-                    st.download_button(
-                        label="📥 Download Official Audit Report Log (.txt)",
-                        data=report_text,
-                        file_name=f"Underwriting_Audit_{payload_to_process['application_id']}.txt",
-                        mime="text/plain"
+                    # 2. GENERATE THE INSTITUTIONAL EXECUTIVE THEME PDF DOCUMENT (.PDF)
+                    pdf_buffer = io.BytesIO()
+                    doc = SimpleDocTemplate(pdf_buffer, pagesize=letter, rightMargin=40, leftMargin=40, topMargin=40, bottomMargin=40)
+                    story = []
+                    
+                    styles = getSampleStyleSheet()
+                    title_style = ParagraphStyle(
+                        'DocTitle', parent=styles['Heading1'], fontName='Helvetica-Bold', fontSize=18, 
+                        textColor=colors.HexColor('#1B365D'), spaceAfter=15, alignment=1
                     )
+                    h2_style = ParagraphStyle(
+                        'SectionHeader', parent=styles['Heading2'], fontName='Helvetica-Bold', fontSize=12, 
+                        textColor=colors.HexColor('#008080'), spaceBefore=10, spaceAfter=6
+                    )
+                    body_style = ParagraphStyle(
+                        'ReportBody', parent=styles['Normal'], fontName='Helvetica', fontSize=10, 
+                        leading=14, textColor=colors.HexColor('#333333')
+                    )
+                    
+                    story.append(Paragraph("INSTITUTIONAL UNDERWRITING COMPLIANCE CERTIFICATE", title_style))
+                    story.append(Spacer(1, 10))
+                    
+                    # Core Applicant Identity Grid Table
+                    ledger_data = [
+                        [Paragraph("<b>Application ID Code</b>", body_style), Paragraph(str(payload_to_process['application_id']), body_style)],
+                        [Paragraph("<b>Customer Profile Holder</b>", body_style), Paragraph(str(payload_to_process['customer_name']), body_style)],
+                        [Paragraph("<b>PAN Account Tracking</b>", body_style), Paragraph(str(payload_to_process['pan_number']), body_style)],
+                        [Paragraph("<b>Requested Capital Principal</b>", body_style), Paragraph(f"INR {payload_to_process['requested_amount']:,}", body_style)]
+                    ]
+                    ledger_table = Table(ledger_data, colWidths=[200, 320])
+                    ledger_table.setStyle(TableStyle([
+                        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor('#F4F6F9')),
+                        ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor('#D1D5DB')),
+                        ('PADDING', (0,0), (-1,-1), 6),
+                    ]))
+                    story.append(ledger_table)
+                    story.append(Spacer(1, 10))
+                    
+                    # Content Block 1: Local Hardcoded Policy Decisions
+                    story.append(Paragraph("1. Programmatic Formula Engine Evaluation Ledger", h2_style))
+                    rule_decision_color = "#10B981" if decision == "APPROVE" else ("#F59E0B" if decision == "REFER" else "#EF4444")
+                    formatted_rules_notes = rationale_lines.replace(' - ', '• ').replace('\n', '<br/>')
+                    
+                    rule_data = [
+                        [Paragraph(f"<b>Core System Decision:</b> <font color='{rule_decision_color}'><b>{decision}</b></font>", body_style)],
+                        [Paragraph(f"<b>Calculated Debt-to-Income Factor:</b> {dti_str}", body_style)],
+                        [Paragraph(f"<b>Local Formula Risk Index:</b> {calculated_risk_score} / 100", body_style)],
+                        [Paragraph(f"<b>Allocated Base Fixed APR:</b> {rate}", body_style)],
+                        [Paragraph(f"<b>Policy Match Verification Remarks:</b><br/>{formatted_rules_notes}", body_style)]
+                    ]
+                    rule_table = Table(rule_data, colWidths=[520])
+                    rule_table.setStyle(TableStyle([
+                        ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#D1D5DB')),
+                        ('PADDING', (0,0), (-1,-1), 8),
+                    ]))
+                    story.append(rule_table)
+                    story.append(Spacer(1, 10))
+                    
+                    # Content Block 2: Groq Intelligent Core Analysis
+                    story.append(Paragraph(f"2. Autonomous Groq AI Core Compliance Audit ({model_choice})", h2_style))
+                    ai_decision_color = "#10B981" if ai_verdict == "APPROVE" else ("#F59E0B" if ai_verdict == "REFER" else "#EF4444")
+                    formatted_ai_notes = ai_rationale_lines.replace(' - ', '• ').replace('\n', '<br/>')
+                    
+                    ai_data = [
+                        [Paragraph(f"<b>Neural Model Executive Decision:</b> <font color='{ai_decision_color}'><b>{ai_verdict}</b></font>", body_style)],
+                        [Paragraph(f"<b>AI Evaluated DTI Matrix:</b> {ai_decision_data.get('calculated_dti', 'N/A')}", body_style)],
+                        [Paragraph(f"<b>AI Assigned Security Risk score:</b> {calibrated_ai_score} / 100", body_style)],
+                        [Paragraph(f"<b>Advanced Audit Analytical Logs:</b><br/>{formatted_ai_notes}", body_style)],
+                        [Paragraph(f"<b>Network Anomaly Stream Reports:</b> {anomaly_str}", body_style)]
+                    ]
+                    ai_table = Table(ai_data, colWidths=[520])
+                    ai_table.setStyle(TableStyle([
+                        ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#D1D5DB')),
+                        ('PADDING', (0,0), (-1,-1), 8),
+                    ]))
+                    story.append(ai_table)
+                    
+                    # Build memory flow stream into solid byte sequences
+                    doc.build(story)
+                    pdf_bytes = pdf_buffer.getvalue()
+                    
+                    # Render download button triggers side by side
+                    # Render download button triggers side by side
+                    btn_col1, btn_col2 = st.columns(2)
+                    with btn_col1:
+                        st.download_button(
+                            label="📥 Download Audit Report Log (.TXT)",
+                            data=report_text,
+                            file_name=f"Underwriting_Audit_{payload_to_process['application_id']}.txt",
+                            mime="text/plain",
+                            use_container_width=True
+                        )
+                    with btn_col2:
+                        st.download_button(
+                            label="📄 Download Executive Audit Certificate (.PDF)",
+                            data=pdf_bytes,
+                            file_name=f"Underwriting_Executive_Certificate_{payload_to_process['application_id']}.pdf",
+                            mime="application/pdf",
+                            use_container_width=True
+                        )
                         
                 except json.JSONDecodeError:
                     st.error("Failed to parse clean structured JSON output from the AI model configuration.")
