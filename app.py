@@ -216,7 +216,7 @@ if payload_to_process:
             dti_str = f"{dti_val:.2f}%"
             rationale = []
             
-            # 🛑 ADD THIS LINE: Read the fraud mismatch keys that your interceptor sets to True
+            # Read the fraud mismatch keys that your interceptor sets to True
             is_fraud_triggered = payload_to_process["fraud_check_stream"]["device_mismatch"] or payload_to_process["fraud_check_stream"]["location_anomaly"]
 
             if dti_val > 50 or cibil < 640:
@@ -254,7 +254,6 @@ if payload_to_process:
             st.write("#### 📝 Institutional Decision Rationale Breakdown:")
             for point in rationale:
                 st.write(f"- {point}")
-
         # --- GROQ AI AUTOMATED RISK OFFICER AUDIT ---
         st.markdown("---")
         st.subheader("🤖 Groq AI Automated Risk Officer Audit")
@@ -426,14 +425,14 @@ GENERATED SECURELY VIA AUTOMATED UNDERWRITER ENGINE
                     # Content Block 2: Groq Intelligent Core Analysis
                     story.append(Paragraph(f"2. Autonomous Groq AI Core Compliance Audit ({model_choice})", h2_style))
                     ai_decision_color = "#10B981" if ai_verdict == "APPROVE" else ("#F59E0B" if ai_verdict == "REFER" else "#EF4444")
-                    formatted_ai_notes = ai_rationale_lines.replace(' - ', '• ').replace('\n', '<br/>')
+                    formatted_ai_notes = ai_rationale_lines.replace(' - ', '• ').replace('\n', '')
                     
                     ai_data = [
-                        [Paragraph(f"<b>Neural Model Executive Decision:</b> <font color='{ai_decision_color}'><b>{ai_verdict}</b></font>", body_style)],
-                        [Paragraph(f"<b>AI Evaluated DTI Matrix:</b> {ai_decision_data.get('calculated_dti', 'N/A')}", body_style)],
-                        [Paragraph(f"<b>AI Assigned Security Risk score:</b> {calibrated_ai_score} / 100", body_style)],
-                        [Paragraph(f"<b>Advanced Audit Analytical Logs:</b><br/>{formatted_ai_notes}", body_style)],
-                        [Paragraph(f"<b>Network Anomaly Stream Reports:</b> {anomaly_str}", body_style)]
+                        [Paragraph(f"Neural Model Executive Decision: {ai_verdict}", body_style)],
+                        [Paragraph(f"AI Evaluated DTI Matrix: {ai_decision_data.get('calculated_dti', 'N/A')}", body_style)],
+                        [Paragraph(f"AI Assigned Security Risk score: {calibrated_ai_score} / 100", body_style)],
+                        [Paragraph(f"Advanced Audit Analytical Logs:{formatted_ai_notes}", body_style)],
+                        [Paragraph(f"Network Anomaly Stream Reports: {anomaly_str}", body_style)]
                     ]
                     ai_table = Table(ai_data, colWidths=[520])
                     ai_table.setStyle(TableStyle([
@@ -446,7 +445,6 @@ GENERATED SECURELY VIA AUTOMATED UNDERWRITER ENGINE
                     doc.build(story)
                     pdf_bytes = pdf_buffer.getvalue()
                     
-                    # Render download button triggers side by side
                     # Render download button triggers side by side
                     btn_col1, btn_col2 = st.columns(2)
                     with btn_col1:
