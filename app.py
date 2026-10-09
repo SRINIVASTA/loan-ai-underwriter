@@ -19,6 +19,7 @@ st.sidebar.header("🤖 Groq AI Engine Settings")
 if not groq_api_key:
     groq_api_key = st.sidebar.text_input("Enter Groq API Key:", type="password")
 
+# Active 2026-compliant models
 model_choice = st.sidebar.selectbox(
     "Select Analysis Model:",
     ["openai/gpt-oss-20b", "openai/gpt-oss-120b", "llama-3.3-70b-versatile", "qwen/qwen3.8-27b"]
@@ -31,7 +32,7 @@ pipeline_mode = st.radio(
     ["Option A: Mock Developer Data Testing (Free Sandbox)", "Option B: Production API-Driven Integration (Live OTP Required)"]
 )
 
-# Load Master Risk Parameters from prompt_template.txt with calibrated risk score definitions
+# Load Master Risk Parameters from prompt_template.txt
 try:
     with open(os.path.join("data", "prompt_template.txt"), "r") as f:
         system_prompt = f.read()
@@ -43,7 +44,7 @@ You must output your evaluation strictly as a valid JSON object. Do not include 
 {
   "application_id": "string",
   "decision": "APPROVE | REFER | DENY",
-  "risk_score_assigned": 1-100,  # CRITICAL: 1 is lowest default risk, 100 is maximum default risk.
+  "risk_score_assigned": 1-100,
   "calculated_dti": "percentage_string",
   "recommended_interest_rate": "percentage_string or null",
   "decision_rationale": ["Fact-based point 1", "Fact-based point 2"],
@@ -235,25 +236,22 @@ if payload_to_process:
                 try:
                     # Instantiate client with provided key
                     client = Groq(api_key=groq_api_key)
-                    
-                    # Convert full active payload stream to a clean formatted JSON string for LLM parsing
                     payload_json_str = json.dumps(payload_to_process, indent=2)
                     
-                    # Execute Groq Chat Completion pipeline against your target prompt structure
+                    # Execute Groq Chat Completion pipeline
                     completion = client.chat.completions.create(
                         model=model_choice,
                         messages=[
                             {"role": "system", "content": system_prompt},
                             {"role": "user", "content": f"Analyze the following incoming financial stream data payload:\n\n{payload_json_str}"}
                         ],
-                        temperature=0.0,  # Locked variance ensures precise compliance on mathematical rules
+                        temperature=0.0,
                         max_tokens=1000
                     )
                     
-                    # FIXED: Extracted using explicit 0-index list targeting to eliminate python 'list' error variables
                     raw_response = completion.choices[0].message.content.strip()
                     
-                    # Isolation clean logic to capture pure dictionary outputs between outermost brackets
+                    # Isolation clean logic to capture pure dictionary outputs
                     if "{" in raw_response and "}" in raw_response:
                         start_idx = raw_response.find("{")
                         end_idx = raw_response.rfind("}") + 1
@@ -261,9 +259,7 @@ if payload_to_process:
                     else:
                         sanitized_response = raw_response
                     
-                    # Parse sanitized JSON object directly into interactive components
                     ai_decision_data = json.loads(sanitized_response)
-                    
                     # Visual representation layout for structural response analysis metrics
                     col1, col2, col3 = st.columns(3)
                     
@@ -296,11 +292,15 @@ if payload_to_process:
                     else:
                         st.success("🔒 System Integrity Verified: Zero Streaming Fraud/Location Anomalies Found.")
                     
-                    # --- NEW FEATURE: INTERACTIVE AUDIT EXPORTER WORKFLOW ---
+                    # --- INTERACTIVE AUDIT EXPORTER WORKFLOW ---
                     st.markdown("---")
                     st.subheader("📥 Export Underwriting Audit Certificate Log")
                     
-                    # Package both engines' findings into an official text-based report stream
+                    # Pre-compile lines cleanly outside the text string context to bypass syntax exceptions
+                    rationale_lines = "\n".join([f" - {p}" for p in rationale])
+                    ai_rationale_lines = "\n".join([f" - {p}" for p in ai_decision_data.get("decision_rationale", [])])
+                    anomaly_str = ", ".join(anomalies) if anomalies else "NONE"
+
                     report_text = f"""==================================================
 INSTITUTIONAL UNDERWRITING COMPLIANCE CERTIFICATE
 ==================================================
@@ -316,7 +316,7 @@ Calculated DTI Ratio    : {dti_str}
 Assigned Local Risk     : {calculated_risk_score} / 100
 Assigned Fixed APR      : {rate}
 Rule Rationale Notes    : 
-{chr(10).join([' - ' + p for p in rationale])}
+{rationale_lines}
 --------------------------------------------------
 2. AUTONOMOUS GROQ LLM COMPLIANCE AUDIT
 --------------------------------------------------
@@ -325,11 +325,12 @@ AI Underwriter Verdict  : {ai_verdict}
 AI Calculated DTI       : {ai_decision_data.get('calculated_dti', 'N/A')}
 AI Target Risk Score    : {calibrated_ai_score} / 100
 AI Auditor Statements   :
-{chr(10).join([' - ' + p for p in ai_decision_data.get('decision_rationale', [])])}
-Anomalies Encountered   : {', '.join(anomalies) if anomalies else 'NONE'}
+{ai_rationale_lines}
+Anomalies Encountered   : {anomaly_str}
 ==================================================
 GENERATED SECURELY VIA AUTOMATED UNDERWRITER ENGINE
-=================================================="""
+==================================================
+"""
                     
                     # Streamlit Native Data Binary Download Node
                     st.download_button(
@@ -337,6 +338,8 @@ GENERATED SECURELY VIA AUTOMATED UNDERWRITER ENGINE
                         data=report_text,
                         file_name=f"Underwriting_Audit_{payload_to_process['application_id']}.txt",
                         mime="text/plain"
+                    )
+                        
                 except json.JSONDecodeError:
                     st.error("Failed to parse clean structured JSON output from the AI model configuration.")
                     st.text_area("Raw AI Diagnostic Stream Output:", value=raw_response, height=250)
