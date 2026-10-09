@@ -9,7 +9,6 @@ st.set_page_config(page_title="AI Loan Underwriter", layout="wide")
 st.title("🏦 Automated Real-Time Loan Underwriter Dashboard")
 
 # Initialize Groq Client securely using Streamlit Secrets or Environment Variables
-# To configure this locally, add GROQ_API_KEY = "your_key" inside .streamlit/secrets.toml
 if "GROQ_API_KEY" in st.secrets:
     groq_api_key = st.secrets["GROQ_API_KEY"]
 else:
@@ -20,7 +19,6 @@ st.sidebar.header("🤖 Groq AI Engine Settings")
 if not groq_api_key:
     groq_api_key = st.sidebar.text_input("Enter Groq API Key:", type="password")
 
-# Supported operational models matching Groq's active 2026 infrastructure tiers
 model_choice = st.sidebar.selectbox(
     "Select Analysis Model:",
     ["openai/gpt-oss-20b", "openai/gpt-oss-120b", "llama-3.3-70b-versatile", "qwen/qwen3.8-27b"]
@@ -33,7 +31,7 @@ pipeline_mode = st.radio(
     ["Option A: Mock Developer Data Testing (Free Sandbox)", "Option B: Production API-Driven Integration (Live OTP Required)"]
 )
 
-# Load Master Risk Parameters from prompt_template.txt
+# Load Master Risk Parameters from prompt_template.txt with calibrated risk score definitions
 try:
     with open(os.path.join("data", "prompt_template.txt"), "r") as f:
         system_prompt = f.read()
@@ -45,7 +43,7 @@ You must output your evaluation strictly as a valid JSON object. Do not include 
 {
   "application_id": "string",
   "decision": "APPROVE | REFER | DENY",
-  "risk_score_assigned": 1-100,
+  "risk_score_assigned": 1-100,  # CRITICAL: 1 is lowest default risk, 100 is maximum default risk.
   "calculated_dti": "percentage_string",
   "recommended_interest_rate": "percentage_string or null",
   "decision_rationale": ["Fact-based point 1", "Fact-based point 2"],
@@ -215,9 +213,10 @@ if payload_to_process:
             elif decision == "REFER": st.warning("⚠️ Underwriting Verdict: MANUAL BANKING REVIEW REQUIRED")
             else: st.error("❌ Underwriting Verdict: APPLICATION RISK REJECTED / DENIED")
             
+            calculated_risk_score = min(100, int(dti_val + (800 - cibil)//10))
             decision_table_data = {
                 "Underwriting Audit Criteria": ["Application ID", "Final Decision Status", "Assigned System Risk Score (1-100)", "Calculated Debt-to-Income (DTI)", "Recommended Fixed Interest Rate"],
-                "Assessed Operational Metrics": [payload_to_process["application_id"], decision, min(100, int(dti_val + (800 - cibil)//10)), dti_str, rate]
+                "Assessed Operational Metrics": [payload_to_process["application_id"], decision, calculated_risk_score, dti_str, rate]
             }
             st.table(pd.DataFrame(decision_table_data))
             
@@ -252,9 +251,9 @@ if payload_to_process:
                         max_tokens=1000
                     )
                     
-                    raw_response = completion.choices[0].message.content.strip()
+                    raw_response = completion.choices.message.content.strip()
                     
-                    # Robust cleanup logic: Isolates pure JSON content between outermost brackets
+                    # Isolation clean logic to capture pure dictionary outputs between outermost braces
                     if "{" in raw_response and "}" in raw_response:
                         start_idx = raw_response.find("{")
                         end_idx = raw_response.rfind("}") + 1
@@ -291,6 +290,49 @@ if payload_to_process:
                             st.write(f"- {anomaly}")
                     else:
                         st.success("🔒 System Integrity Verified: Zero Streaming Fraud/Location Anomalies Found.")
+                    
+                    # --- NEW FEATURE: INTERACTIVE AUDIT EXPORTER WORKFLOW ---
+                    st.markdown("---")
+                    st.subheader("📥 Export Underwriting Audit Certificate Log")
+                    
+                    # Package both engines' findings into an official text-based report stream
+                    report_text = f"""==================================================
+INSTITUTIONAL UNDERWRITING COMPLIANCE CERTIFICATE
+==================================================
+Application Tracking ID : {payload_to_process['application_id']}
+Customer Profile Name   : {payload_to_process['customer_name']}
+PAN Identification     : {payload_to_process['pan_number']}
+Requested Principal     : ₹{payload_to_process['requested_amount']:,}
+--------------------------------------------------
+1. LOCAL POLICY RULE MATCH ENGINE VERDICT
+--------------------------------------------------
+Final Rule Decision     : {decision}
+Calculated DTI Ratio    : {dti_str}
+Assigned Local Risk     : {calculated_risk_score} / 100
+Assigned Fixed APR      : {rate}
+Rule Rationale Notes    : 
+{chr(10).join([' - ' + p for p in rationale])}
+--------------------------------------------------
+2. AUTONOMOUS GROQ LLM COMPLIANCE AUDIT
+--------------------------------------------------
+Model Core Selected     : {model_choice}
+AI Underwriter Verdict  : {ai_verdict}
+AI Calculated DTI       : {ai_decision_data.get('calculated_dti', 'N/A')}
+AI Target Risk Score    : {ai_decision_data.get('risk_score_assigned', 0)} / 100
+AI Auditor Statements   :
+{chr(10).join([' - ' + p for p in ai_decision_data.get('decision_rationale', [])])}
+Anomalies Encountered   : {', '.join(anomalies) if anomalies else 'NONE'}
+==================================================
+GENERATED SECURELY VIA AUTOMATED UNDERWRITER ENGINE
+=================================================="""
+                    
+                    # Streamlit Native Data Binary Download Node
+                    st.download_button(
+                        label="📥 Download Official Audit Report Log (.txt)",
+                        data=report_text,
+                        file_name=f"Underwriting_Audit_{payload_to_process['application_id']}.txt",
+                        mime="text/plain"
+                    )
                         
                 except json.JSONDecodeError:
                     st.error("Failed to parse clean structured JSON output from the AI model configuration.")
