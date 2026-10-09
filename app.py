@@ -20,9 +20,10 @@ st.sidebar.header("🤖 Groq AI Engine Settings")
 if not groq_api_key:
     groq_api_key = st.sidebar.text_input("Enter Groq API Key:", type="password")
 
+# UPDATED: Replaced deprecated model IDs with active Groq models
 model_choice = st.sidebar.selectbox(
     "Select Analysis Model:",
-    ["llama-3.1-8b-instant", "llama-3.3-70b-versatile", "mixtral-8x7b-32768"]
+    ["openai/gpt-oss-20b", "openai/gpt-oss-120b", "qwen/qwen3.8-27b"]
 )
 
 # 1. Core Operation Mode Selector
