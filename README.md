@@ -5,6 +5,7 @@
   <img src="https://shields.io" alt="Python Version">
   <img src="https://shields.io" alt="Streamlit Framework">
 </p>
+
 **Automate institutional credit decisioning and compliance reporting in under 60 seconds.**
 
 A lightweight, high-performance financial technology dashboard built with **Streamlit**, **Pandas**, and **Plotly**. This application automates institutional loan underwriting workflows by calculating risk metrics like the Debt-to-Income (DTI) ratio, parsing credit bureau indicators, and rendering deterministic credit scoring verdicts instantly alongside an LLM compliance audit.
@@ -45,7 +46,7 @@ Your dynamic local interactive webpage grid environment will immediately boot up
 
 ## 🏗️ System Architecture & Data Flow
 
-The system operates via two distinct environmental configurations. The architecture below outlines how data streams from input to the final algorithmic decision engine.
+The system operates via two distinct environmental configurations. The architecture below outlines how raw telemetry streams through the rules engine and the autonomous Groq LLM layer before compiling into dual-format reports.
 
 ```mermaid
 graph TD
@@ -61,13 +62,20 @@ graph TD
     E -->|Trigger Consent Token| F[Account Aggregator Network]
     F -->|SMS OTP Handshake Signed| G
     
-    %% Processing & Ledger Ingestion
+    %% Processing & Threshold logic
     G -->|Run Risk Policy Logic Math| H{Institutional Threshold Check}
-    H -->|DTI <= 43% & CIBIL >= 640| I[🎉 AUTOMATIC APPROVAL CLEARED]
-    H -->|DTI > 43% OR Work History < 2yrs| J[⚠️ MANUAL REVIEW REQUIRED]
-    H -->|DTI > 50% OR CIBIL < 640| K[❌ APPLICATION RISK DENIED]
+    H -->|DTI & CIBIL Calculations| M[Compiled Local Decision Context]
     
-    I & J & K --> L[📥 Underwriting Decision Audit Ledger Table]
+    %% Groq AI Auditor Core Integration Pipeline
+    M -->|Stream Complete Payload Map| I[🤖 Groq AI Automated Risk Officer Audit]
+    I -->|Execute Zero-Temp LLM Verification| J[AI Compliance JSON Ingestion Matrix]
+    
+    %% Comprehensive Compilation Node
+    M & J --> K{Dual Exporter Compilation Layer}
+    
+    %% Export Generation Framework Delivery Nodes
+    K -->|Format Plaintext String Arrays| L[📥 Download Audit Report Log .TXT]
+    K -->|Compile ReportLab SimpleDocTemplate Flow| N[📄 Download Executive Audit Certificate .PDF]
 ```
 
 ---
