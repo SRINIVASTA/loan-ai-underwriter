@@ -129,8 +129,25 @@ if "Option A" in pipeline_mode:
         app_ids = [row["application_id"] for row in mock_db]
         selected_id = st.selectbox("Select Target Application ID Profile Row:", app_ids)
         
-        payload_to_process = next(row for row in mock_db if row["application_id"] == selected_id)
+        # Pull original payload row context cleanly
+        raw_payload = next(row for row in mock_db if row["application_id"] == selected_id)
+        
+        # DYNAMIC ANOMALY INTERCEPTOR FOR OPTION A:
+        # If the profile ID ends with an odd number or contains '002', we simulate an active threat!
+        payload_to_process = json.loads(json.dumps(raw_payload))  # Deep copy payload map container
+        
+        if "2" in str(selected_id) or "3" in str(selected_id) or "5" in str(selected_id):
+            payload_to_process["fraud_check_stream"]["device_mismatch"] = True
+            payload_to_process["fraud_check_stream"]["location_anomaly"] = True
+            payload_to_process["flagged_anomalies"] = [
+                "IP Geolocation routing mismatch tracked outside authorized home zone footprint",
+                "Simulated hardware IMEI terminal fingerprint cloning conflict detected"
+            ]
+        else:
+            payload_to_process["flagged_anomalies"] = []
+            
         render_payload_table(payload_to_process)
+        
     except Exception as e:
         st.error(f"Failed to load data/mock_payloads.json: {str(e)}")
 else:
@@ -160,6 +177,7 @@ else:
         if st.button("Verify OTP & Fetch Real-Time Data Streams"):
             st.success("✅ Secure Signature Token Authorized! Fetching live credit and income matrix...")
             
+            # DYNAMIC ANOMALY INTERCEPTOR FOR OPTION B: Live profile defaults to simulated warning state
             payload_to_process = {
                 "application_id": "APP-LIVE-PRODUCTION-7731",
                 "customer_id": "CUST-LIVE-0941",
@@ -170,7 +188,15 @@ else:
                 "pan_verification": {"status": "VALID", "holder_name": "Verified PAN Holder", "pan_type": "INDIVIDUAL"},
                 "credit_bureau_stream": {"score_provider": "CIBIL", "score": 765, "active_loans_count": 2, "total_existing_monthly_emis": 15000},
                 "account_aggregator_stream": {"verified_monthly_net_income": 125000, "employer_name": "Production Verified Enterprise", "employment_stability_years": 4.2},
-                "fraud_check_stream": {"device_mismatch": False, "location_anomaly": False}
+                
+                "fraud_check_stream": {
+                    "device_mismatch": True, 
+                    "location_anomaly": True
+                },
+                "flagged_anomalies": [
+                    "IP Location mismatch detected between local cell line network and registry database arrays",
+                    "Security signature tracking exception triggered via simulation protocol"
+                ]
             }
             st.session_state.active_production_payload = payload_to_process
 
