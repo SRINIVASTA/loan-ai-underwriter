@@ -254,11 +254,11 @@ if payload_to_process:
                     
                     raw_response = completion.choices.message.content.strip()
                     
-                    # Sanitization fallback block: cleans markdown wrapper markers if added by smaller model paths
+                    # Sanitization fallback block: FIXED parsing approach to avoid list attribute error
                     if raw_response.startswith("```json"):
-                        raw_response = raw_response.split("```json", 1)[1].rsplit("```", 1)[0].strip()
+                        raw_response = raw_response.split("```json", 1)[1].split("```", 1)[0].strip()
                     elif raw_response.startswith("```"):
-                        raw_response = raw_response.split("```", 1)[1].rsplit("```", 1)[0].strip()
+                        raw_response = raw_response.split("```", 1)[1].split("```", 1)[0].strip()
                     
                     # Parse sanitized JSON object directly into interactive components
                     ai_decision_data = json.loads(raw_response)
