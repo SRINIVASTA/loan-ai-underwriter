@@ -20,10 +20,10 @@ st.sidebar.header("🤖 Groq AI Engine Settings")
 if not groq_api_key:
     groq_api_key = st.sidebar.text_input("Enter Groq API Key:", type="password")
 
-# UPDATED: Replaced deprecated model IDs with active Groq models
+# Supported operational models matching Groq's active 2026 infrastructure tiers
 model_choice = st.sidebar.selectbox(
     "Select Analysis Model:",
-    ["openai/gpt-oss-20b", "openai/gpt-oss-120b", "qwen/qwen3.8-27b"]
+    ["openai/gpt-oss-20b", "openai/gpt-oss-120b", "llama-3.3-70b-versatile", "qwen/qwen3.8-27b"]
 )
 
 # 1. Core Operation Mode Selector
@@ -252,16 +252,18 @@ if payload_to_process:
                         max_tokens=1000
                     )
                     
-                    raw_response = completion.choices.message.content.strip()
+                    raw_response = completion.choices[0].message.content.strip()
                     
-                    # Sanitization fallback block: FIXED parsing approach to avoid list attribute error
-                    if raw_response.startswith("```json"):
-                        raw_response = raw_response.split("```json", 1)[1].split("```", 1)[0].strip()
-                    elif raw_response.startswith("```"):
-                        raw_response = raw_response.split("```", 1)[1].split("```", 1)[0].strip()
+                    # Robust cleanup logic: Isolates pure JSON content between outermost brackets
+                    if "{" in raw_response and "}" in raw_response:
+                        start_idx = raw_response.find("{")
+                        end_idx = raw_response.rfind("}") + 1
+                        sanitized_response = raw_response[start_idx:end_idx]
+                    else:
+                        sanitized_response = raw_response
                     
                     # Parse sanitized JSON object directly into interactive components
-                    ai_decision_data = json.loads(raw_response)
+                    ai_decision_data = json.loads(sanitized_response)
                     
                     # Visual representation layout for structural response analysis metrics
                     col1, col2, col3 = st.columns(3)
@@ -292,6 +294,6 @@ if payload_to_process:
                         
                 except json.JSONDecodeError:
                     st.error("Failed to parse clean structured JSON output from the AI model configuration.")
-                    st.text_area("Raw AI Diagnostic Stream Output:", value=completion.choices.message.content, height=250)
+                    st.text_area("Raw AI Diagnostic Stream Output:", value=raw_response, height=250)
                 except Exception as ai_err:
                     st.error(f"Groq API Execution Error: {str(ai_err)}")
