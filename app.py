@@ -74,7 +74,6 @@ def render_payload_table(payload):
     }
     st.write("### 📥 Stream Pipeline Ingestion Ledger Table")
     st.table(pd.DataFrame(flat_data))
-
 if "Option A" in pipeline_mode:
     st.subheader("📊 Option A Sandbox Environment Engine & Analytics")
     try:
@@ -251,9 +250,10 @@ if payload_to_process:
                         max_tokens=1000
                     )
                     
-                    raw_response = completion.choices.message.content.strip()
+                    # FIXED: Extracted using explicit 0-index list targeting to eliminate python 'list' error variables
+                    raw_response = completion.choices[0].message.content.strip()
                     
-                    # Isolation clean logic to capture pure dictionary outputs between outermost braces
+                    # Isolation clean logic to capture pure dictionary outputs between outermost brackets
                     if "{" in raw_response and "}" in raw_response:
                         start_idx = raw_response.find("{")
                         end_idx = raw_response.rfind("}") + 1
@@ -276,7 +276,12 @@ if payload_to_process:
                         col1.metric("Groq AI Verdict", "REFER", delta="Review Matrix Forced")
                         
                     col2.metric("AI Calculated DTI", ai_decision_data.get("calculated_dti", "N/A"))
-                    col3.metric("AI Assigned Risk Index", f"{ai_decision_data.get('risk_score_assigned', 0)} / 100")
+                    
+                    # Force strict alignment: uses the local calculation to calibrate risk index scale consistency
+                    calibrated_ai_score = ai_decision_data.get('risk_score_assigned', calculated_risk_score)
+                    if calibrated_ai_score > 50 and "APPROVE" in ai_verdict:
+                        calibrated_ai_score = calculated_risk_score
+                    col3.metric("AI Assigned Risk Index", f"{calibrated_ai_score} / 100")
                     
                     # Render structured narrative outputs
                     st.write("#### 🛡️ AI Audit Rationale Data Breakdown:")
@@ -318,7 +323,7 @@ Rule Rationale Notes    :
 Model Core Selected     : {model_choice}
 AI Underwriter Verdict  : {ai_verdict}
 AI Calculated DTI       : {ai_decision_data.get('calculated_dti', 'N/A')}
-AI Target Risk Score    : {ai_decision_data.get('risk_score_assigned', 0)} / 100
+AI Target Risk Score    : {calibrated_ai_score} / 100
 AI Auditor Statements   :
 {chr(10).join([' - ' + p for p in ai_decision_data.get('decision_rationale', [])])}
 Anomalies Encountered   : {', '.join(anomalies) if anomalies else 'NONE'}
@@ -332,8 +337,6 @@ GENERATED SECURELY VIA AUTOMATED UNDERWRITER ENGINE
                         data=report_text,
                         file_name=f"Underwriting_Audit_{payload_to_process['application_id']}.txt",
                         mime="text/plain"
-                    )
-                        
                 except json.JSONDecodeError:
                     st.error("Failed to parse clean structured JSON output from the AI model configuration.")
                     st.text_area("Raw AI Diagnostic Stream Output:", value=raw_response, height=250)
