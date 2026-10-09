@@ -27,3 +27,9 @@ You must output your evaluation strictly as a valid JSON object. Do not include 
   "decision_rationale": ["Fact-based point 1", "Fact-based point 2"],
   "flagged_anomalies": []
 }
+
+...
+### 3. OUTPUT FORMAT (JSON ONLY)
+You must output your evaluation strictly as a valid JSON object. 
+- For "risk_score_assigned", use an integer from 1-100 where 1 means lowest risk/highest quality and 100 means extreme default risk. Match the rule engine logic closely.
+...
