@@ -216,12 +216,14 @@ if payload_to_process:
             dti_str = f"{dti_val:.2f}%"
             rationale = []
             
+            # 🛑 ADD THIS LINE: Read the fraud mismatch keys that your interceptor sets to True
+            is_fraud_triggered = payload_to_process["fraud_check_stream"]["device_mismatch"] or payload_to_process["fraud_check_stream"]["location_anomaly"]
+
             if dti_val > 50 or cibil < 640:
                 decision = "DENY"
                 rate = "N/A"
                 if dti_val > 50: rationale.append(f"Debt-to-Income ratio ({dti_str}) exceeds critical 50% ceiling.")
-                if cibil < 640: rationale.append(f"CIBIL profile score ({cibil}) drops inside high-risk Subprime floor limits.")
-            elif dti_val > 43:
+                if cibil  43:
                 decision = "REFER"
                 rate = "N/A"
                 rationale.append(f"DTI ratio is {dti_str}, which exceeds standard 43% automatic clearing threshold. Route to human evaluation.")
