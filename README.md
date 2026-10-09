@@ -1,10 +1,7 @@
 # 🏦 Automated Real-Time Loan Underwriter Dashboard
 
-# 🏦 Automated Real-Time Loan Underwriter Dashboard
-
 > **📄 License:** MIT &nbsp;|&nbsp; **🐍 Language:** Python 3.9+ &nbsp;|&nbsp; **⚡ UI Framework:** Streamlit &nbsp;|&nbsp; **🤖 AI Engine:** Groq API Cloud
 
-**Automate institutional credit decisioning and compliance reporting in under 60 seconds.**
 
 **Automate institutional credit decisioning and compliance reporting in under 60 seconds.**
 
