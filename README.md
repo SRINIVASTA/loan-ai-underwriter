@@ -1,10 +1,8 @@
 # 🏦 Automated Real-Time Loan Underwriter Dashboard
 
-<p align="left">
-  <img src="https://shields.io" alt="License: MIT">
-  <img src="https://shields.io" alt="Python Version">
-  <img src="https://shields.io" alt="Streamlit Framework">
-</p>
+[![License: MIT](https://shields.io)](https://opensource.org)
+[![Python: 3.9+](https://shields.io)](https://python.org)
+[![Framework: Streamlit](https://shields.io)](https://streamlit.io)
 
 **Automate institutional credit decisioning and compliance reporting in under 60 seconds.**
 
