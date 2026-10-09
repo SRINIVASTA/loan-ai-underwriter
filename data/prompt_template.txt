@@ -28,8 +28,5 @@ You must output your evaluation strictly as a valid JSON object. Do not include 
   "flagged_anomalies": []
 }
 
-...
-### 3. OUTPUT FORMAT (JSON ONLY)
-You must output your evaluation strictly as a valid JSON object. 
-- For "risk_score_assigned", use an integer from 1-100 where 1 means lowest risk/highest quality and 100 means extreme default risk. Match the rule engine logic closely.
-...
+CRITICAL MATRIX DEFINITION FOR SCHEMA:
+- For "risk_score_assigned", you must output an integer from 1 to 100 where 1 represents absolute lowest default risk (highest quality prime credit asset) and 100 represents maximum default risk / automatic disqualification. Ensure this value mirrors the mathematical engine closely.
