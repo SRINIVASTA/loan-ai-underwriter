@@ -5,7 +5,6 @@
   <img src="https://shields.io" alt="Python Version">
   <img src="https://shields.io" alt="Streamlit Framework">
 </p>
-
 **Automate institutional credit decisioning and compliance reporting in under 60 seconds.**
 
 A lightweight, high-performance financial technology dashboard built with **Streamlit**, **Pandas**, and **Plotly**. This application automates institutional loan underwriting workflows by calculating risk metrics like the Debt-to-Income (DTI) ratio, parsing credit bureau indicators, and rendering deterministic credit scoring verdicts instantly alongside an LLM compliance audit.
